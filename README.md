@@ -10,9 +10,16 @@ __Note:__ This is a free extension created for the community. The Ultimate Membe
 - Ability to restrict custom account tabs for specific user roles.
 - Ability to embed a profile form into the custom account tab.
 
+## Installation
+1. Click the "Code" button then "Download Zip" to download the archive.
+2. Unpack the downloaded archive and change the folder name to __um-account-tabs__.
+3. Connect your site via FTP and copy the __um-account-tabs__ folder to the `/wp-content/plugins/` directory.
+4. Enter your site admin dashboard and go to *wp-admin > Plugins > Installed Plugins*.
+5. Find the "Ultimate Member - Account tabs" plugin and click the "Activate" link.
+
 ## How to use
-Once the plugin is activated go to *wp-admin > Ultimate Member > Account Tabs*. 
-Click the __Add New__ button, then configure a new account tab as shown on the image below. 
+Once the plugin is activated go to *wp-admin > Ultimate Member > Account Tabs*.
+Click the __Add New__ button, then configure a new account tab as shown on the image below.
 Select the profile form you want to embed to account in the setting __Embed a profile form__.
 
 ### Screenshots:
