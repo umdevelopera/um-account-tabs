@@ -1,0 +1,128 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ultimate Member - Account tabs\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-11 20:06+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.3; wp-6.1\n"
+"X-Domain: um-account-tabs"
+
+#: includes/admin/class-admin.php:37 includes/admin/class-admin.php:38
+#: includes/core/class-common.php:29 includes/core/class-common.php:41
+msgid "Account Tabs"
+msgstr ""
+
+#: includes/core/class-common.php:32
+msgid "Add New"
+msgstr ""
+
+#: includes/core/class-common.php:31
+msgid "Add New Tab"
+msgstr ""
+
+#. Description of the plugin
+msgid "Adds custom tabs to user account."
+msgstr ""
+
+#: includes/core/class-common.php:30
+msgid "All Tabs"
+msgstr ""
+
+#: includes/admin/class-admin.php:140
+msgid "Customize this tab"
+msgstr ""
+
+#: includes/admin/class-admin.php:131
+msgid "Display Settings"
+msgstr ""
+
+#: includes/core/class-common.php:34
+msgid "Edit Tab"
+msgstr ""
+
+#: includes/admin/templates/account-tab/um-form.php:51
+msgid "Embed a profile form"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://ultimatemember.com/support/"
+msgstr ""
+
+#: includes/admin/templates/account-tab/icon.php:27
+msgid "Icon"
+msgstr ""
+
+#: includes/core/class-common.php:33
+msgid "New Tab"
+msgstr ""
+
+#: includes/admin/templates/account-tab/um-form.php:19
+msgid "No form"
+msgstr ""
+
+#: includes/admin/templates/account-tab/icon.php:33
+msgid "Position"
+msgstr ""
+
+#: includes/core/class-common.php:27
+msgctxt "Post Type General Name"
+msgid "Account tabs"
+msgstr ""
+
+#: includes/core/class-common.php:28
+msgctxt "Post Type Singular Name"
+msgid "Account tab"
+msgstr ""
+
+#: includes/admin/class-admin.php:122
+msgid "Pre-defined content"
+msgstr ""
+
+#: includes/admin/templates/account-tab/access.php:25
+msgid "Show on these roles accounts"
+msgstr ""
+
+#: includes/admin/templates/account-tab/access.php:14
+#: includes/admin/templates/account-tab/icon.php:14
+#: includes/admin/templates/account-tab/um-form.php:14
+msgid "These settings are obtained from a Account tab in the default language"
+msgstr ""
+
+#. Name of the plugin
+msgid "Ultimate Member - Account tabs"
+msgstr ""
+
+#. Author of the plugin
+msgid "Ultimate Member support"
+msgstr ""
+
+#: includes/core/class-account.php:72
+msgid "Update"
+msgstr ""
+
+#: includes/core/class-common.php:35
+msgid "Update Tab"
+msgstr ""
+
+#: includes/core/class-common.php:36
+msgid "View Tab"
+msgstr ""
+
+#: includes/core/class-common.php:37
+msgid "View Tabs"
+msgstr ""
+
+#: includes/admin/templates/account-tab/access.php:26
+msgid ""
+"You could select the roles which have the current account tab at their form. "
+"If empty, account tab is visible for all roles at their forms."
+msgstr ""

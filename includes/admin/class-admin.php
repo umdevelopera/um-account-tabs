@@ -1,4 +1,10 @@
 <?php
+/**
+ * Adds the Account Tabs sumbenu to the Ultimate Member admin menu.
+ *
+ * @package um_ext\um_account_tabs\admin
+ */
+
 namespace um_ext\um_account_tabs\admin;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -42,12 +48,14 @@ if ( ! class_exists( 'um_ext\um_account_tabs\admin\Admin' ) ) {
 		}
 
 
+		/**
+		 * Enqueue admin scripts.
+		 *
+		 * @global object $current_screen
+		 */
 		public function enqueue() {
 			global $current_screen;
 			if ( isset( $current_screen ) && 'um_account_tabs' === $current_screen->id ) {
-
-				$fgsfb = um_account_tabs_url . '/assets/js/um-account-tabs-admin.js';
-
 				wp_enqueue_script(
 					'um-account-tabs-admin',
 					um_account_tabs_url . '/assets/js/um-account-tabs-admin.js',
@@ -59,6 +67,15 @@ if ( ! class_exists( 'um_ext\um_account_tabs\admin\Admin' ) ) {
 		}
 
 
+		/**
+		 * Validates the account tab name and slug to be not empty.
+		 *
+		 * @param  array $data                An array of slashed, sanitized, and processed post data.
+		 * @param  array $postarr             An array of sanitized (and slashed) but otherwise unmodified post data.
+		 * @param  array $unsanitized_postarr An array of slashed yet *unsanitized* and unprocessed post data.
+		 * @param  bool  $update              Whether this is an existing post being updated.
+		 * @return array
+		 */
 		public function filter_post_data( $data, $postarr, $unsanitized_postarr, $update ) {
 
 			if ( isset( $data['post_type'] ) && 'um_account_tabs' === $data['post_type'] && isset( $unsanitized_postarr['post_status'] ) && 'auto-draft' !== $unsanitized_postarr['post_status'] ) {
@@ -66,7 +83,7 @@ if ( ! class_exists( 'um_ext\um_account_tabs\admin\Admin' ) ) {
 					$data['post_title'] = 'Account Tab';
 				}
 				if ( empty( $data['post_name'] ) ) {
-					$tab_id = empty( $unsanitized_postarr['ID'] ) ? time() : $unsanitized_postarr['ID'];
+					$tab_id            = empty( $unsanitized_postarr['ID'] ) ? time() : $unsanitized_postarr['ID'];
 					$data['post_name'] = 'account-tab-' . $tab_id;
 				}
 			}

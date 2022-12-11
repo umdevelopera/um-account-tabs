@@ -19,6 +19,7 @@ $forms_options = array(
 	'' => __( 'No form', 'um-account-tabs' ),
 );
 
+// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 $forms = get_posts(
 	array(
 		'post_type'      => 'um_form',
@@ -32,6 +33,7 @@ $forms = get_posts(
 		),
 	)
 );
+// phpcs:enable
 if ( is_array( $forms ) ) {
 	foreach ( $forms as $form ) {
 		$forms_options[ $form->ID ] = $form->post_title;

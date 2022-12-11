@@ -1,8 +1,13 @@
 <?php
+/**
+ * Inits the extension.
+ *
+ * @package um_ext\um_account_tabs\core
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 
 /**
  * Class UM_Account_Tabs
@@ -11,15 +16,19 @@ class UM_Account_Tabs {
 
 
 	/**
+	 * An instance of the class.
+	 *
 	 * @var UM_Account_Tabs
 	 */
 	private static $instance;
 
 
 	/**
+	 * Creates an instance of the class.
+	 *
 	 * @return UM_Account_Tabs
 	 */
-	static public function instance() {
+	public static function instance() {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
 		}
@@ -30,7 +39,7 @@ class UM_Account_Tabs {
 	/**
 	 * UM_Account_Tabs constructor.
 	 */
-	function __construct() {
+	public function __construct() {
 		add_filter( 'um_call_object_Account_Tabs', array( &$this, 'get_this' ) );
 
 		$this->common();
@@ -46,7 +55,7 @@ class UM_Account_Tabs {
 	/**
 	 * @return $this UM_Account_Tabs
 	 */
-	function get_this() {
+	public function get_this() {
 		return $this;
 	}
 
@@ -54,7 +63,7 @@ class UM_Account_Tabs {
 	/**
 	 * @return um_ext\um_account_tabs\core\Account()
 	 */
-	function account() {
+	public function account() {
 		if ( empty( UM()->classes['um_account_tabs_account'] ) ) {
 			UM()->classes['um_account_tabs_account'] = new um_ext\um_account_tabs\core\Account();
 		}
@@ -65,7 +74,7 @@ class UM_Account_Tabs {
 	/**
 	 * @return um_ext\um_account_tabs\admin\Admin()
 	 */
-	function admin() {
+	public function admin() {
 		if ( empty( UM()->classes['um_account_tabs_admin'] ) ) {
 			UM()->classes['um_account_tabs_admin'] = new um_ext\um_account_tabs\admin\Admin();
 		}
@@ -76,7 +85,7 @@ class UM_Account_Tabs {
 	/**
 	 * @return um_ext\um_account_tabs\core\Common()
 	 */
-	function common() {
+	public function common() {
 		if ( empty( UM()->classes['um_account_tabs_common'] ) ) {
 			UM()->classes['um_account_tabs_common'] = new um_ext\um_account_tabs\core\Common();
 		}
@@ -84,10 +93,12 @@ class UM_Account_Tabs {
 	}
 }
 
-
-add_action( 'plugins_loaded', 'um_init_um_account_tabs', -10, 1 );
+/**
+ * Adds the class to the UM core.
+ */
 function um_init_um_account_tabs() {
 	if ( function_exists( 'UM' ) ) {
 		UM()->set_class( 'Account_Tabs', true );
 	}
 }
+add_action( 'plugins_loaded', 'um_init_um_account_tabs', -10, 1 );
