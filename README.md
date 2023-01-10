@@ -11,11 +11,15 @@ __Note:__ This is a free extension created for the community. The Ultimate Membe
 - Ability to embed a profile form into the custom account tab.
 
 ## Installation
-1. Click the "Code" button then "Download Zip" to download the archive.
-2. Unpack the downloaded archive and change the folder name to __um-account-tabs__.
-3. Connect your site via FTP and copy the __um-account-tabs__ folder to the `/wp-content/plugins/` directory.
-4. Enter your site admin dashboard and go to *wp-admin > Plugins > Installed Plugins*.
-5. Find the "Ultimate Member - Account tabs" plugin and click the "Activate" link.
+### Clone from GitHub
+Open git bash, navigate to the **plugins** folder and execute this command:
+
+`git clone --branch=main git@github.com:umdevelopera/um-account-tabs.git um-account-tabs`
+
+Once the plugin is cloned, enter your site admin dashboard and go to _wp-admin > Plugins > Installed Plugins_. Find the "Ultimate Member - Account tabs" plugin and click the "Activate" link.
+
+### Install from ZIP archive
+You can install this plugin from the [ZIP archive](https://drive.google.com/file/d/1mXrY5qQT-dJDlBek30kgSjlwN_eeLf0l/view) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
 
 ## How to use
 Once the plugin is activated go to *wp-admin > Ultimate Member > Account Tabs*.
