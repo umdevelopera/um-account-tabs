@@ -92,13 +92,3 @@ class UM_Account_Tabs {
 		return UM()->classes['um_account_tabs_common'];
 	}
 }
-
-/**
- * Adds the class to the UM core.
- */
-function um_init_um_account_tabs() {
-	if ( function_exists( 'UM' ) ) {
-		UM()->set_class( 'Account_Tabs', true );
-	}
-}
-add_action( 'plugins_loaded', 'um_init_um_account_tabs', -10, 1 );
