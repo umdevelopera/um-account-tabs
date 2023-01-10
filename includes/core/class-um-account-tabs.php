@@ -40,8 +40,6 @@ class UM_Account_Tabs {
 	 * UM_Account_Tabs constructor.
 	 */
 	public function __construct() {
-		add_filter( 'um_call_object_Account_Tabs', array( &$this, 'get_this' ) );
-
 		$this->common();
 		if ( UM()->is_request( 'admin' ) ) {
 			$this->admin();
@@ -49,14 +47,6 @@ class UM_Account_Tabs {
 		if ( UM()->is_request( 'frontend' ) ) {
 			$this->account();
 		}
-	}
-
-
-	/**
-	 * @return $this UM_Account_Tabs
-	 */
-	public function get_this() {
-		return $this;
 	}
 
 
@@ -92,13 +82,3 @@ class UM_Account_Tabs {
 		return UM()->classes['um_account_tabs_common'];
 	}
 }
-
-/**
- * Adds the class to the UM core.
- */
-function um_init_um_account_tabs() {
-	if ( function_exists( 'UM' ) ) {
-		UM()->set_class( 'Account_Tabs', true );
-	}
-}
-add_action( 'plugins_loaded', 'um_init_um_account_tabs', -10, 1 );

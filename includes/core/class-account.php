@@ -32,6 +32,9 @@ class Account {
 	 */
 	public function __construct() {
 		add_filter( 'um_account_page_default_tabs_hook', array( &$this, 'add_tabs' ), 100, 1 );
+
+		// Redirect to the same page after updating the profile form in account.
+		add_filter( 'um_update_profile_redirect_after', array( &$this, 'update_profile_redirect' ), 10, 3 );
 	}
 
 	/**
@@ -192,5 +195,25 @@ class Account {
 		UM()->fields()->viewing  = $viewing;
 
 		return $contents;
+	}
+
+
+	/**
+	 * Redirect to the same page after updating the profile form in account.
+	 *
+	 * @since 1.0.2
+	 *
+	 * @param string $url     Redirect URL.
+	 * @param int    $user_id User ID.
+	 * @param array  $args    Form data.
+	 *
+	 * @return string
+	 */
+	public function update_profile_redirect( $url, $user_id, $args ) {
+		if ( is_array( $args ) && isset( $args['_um_account'] ) && isset( $args['_um_account_tab'] ) ) {
+			$current_url = UM()->permalinks()->get_current_url();
+			$url         = remove_query_arg( 'um_action', $current_url );
+		}
+		return $url;
 	}
 }
