@@ -2,10 +2,10 @@
 /**
 	Plugin Name: Ultimate Member - Account tabs
 	Plugin URI:  https://github.com/umdevelopera/um-account-tabs
-	Description: Adds custom tabs to user account.
+	Description: Adds custom tabs to the user account.
 	Version:     1.0.2
-	Author:      Ultimate Member support
-	Author URI:  https://ultimatemember.com/support/
+	Author:      umdevelopera
+	Author URI:  https://github.com/umdevelopera
 	Text Domain: um-account-tabs
 	Domain Path: /languages
 	UM version:  2.5.0
@@ -37,11 +37,6 @@ if ( ! function_exists( 'um_account_tabs_activation_hook' ) ) {
 		if ( um_account_tabs_version !== $version ) {
 			update_option( 'um_account_tabs_version', um_account_tabs_version );
 		}
-		if ( ! class_exists( 'um_ext\um_account_tabs\core\Setup' ) ) {
-			require_once um_account_tabs_path . 'includes/core/class-setup.php';
-		}
-		$setup = new um_ext\um_account_tabs\core\Setup();
-		$setup->run_setup();
 	}
 }
 register_activation_hook( um_account_tabs_plugin, 'um_account_tabs_activation_hook' );
@@ -59,7 +54,7 @@ if ( ! function_exists( 'um_account_tabs_check_dependencies' ) ) {
 				}
 			);
 		} else {
-			require_once um_account_tabs_path . 'includes/core/class-um-account-tabs.php';
+			require_once 'includes/core/class-um-account-tabs.php';
 
 			function um_account_tabs_init() {
 				if ( function_exists( 'UM' ) ) {

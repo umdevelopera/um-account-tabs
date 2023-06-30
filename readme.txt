@@ -30,10 +30,12 @@ This is a free extension created for the community. The Ultimate Member team doe
 
 == Changelog ==
 
-= 1.0.2: June 14, 2023 =
+= 1.0.2: July 22, 2023 =
 
+* Added: Redirect to the same page after updating the profile form in account.
 * Tweak: Check dependencies.
 * Tweak: Documentation updated.
+* Tweak: Unused code removed.
 
 = 1.0.1: December 11, 2022 =
 
