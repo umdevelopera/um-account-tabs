@@ -160,10 +160,12 @@ class Account {
 		$user_id = get_current_user_id();
 
 		// save profile settings.
-		$set_id   = UM()->fields()->set_id;
-		$set_mode = UM()->fields()->set_mode;
-		$editing  = UM()->fields()->editing;
-		$viewing  = UM()->fields()->viewing;
+		$set_id      = UM()->fields()->set_id;
+		$set_mode    = UM()->fields()->set_mode;
+		$editing     = UM()->fields()->editing;
+		$viewing     = UM()->fields()->viewing;
+		$form_nonce  = UM()->form()->nonce;
+		$form_suffix = UM()->form()->form_suffix;
 
 		// set profile settings.
 		UM()->fields()->set_id   = $form_id;
@@ -189,10 +191,12 @@ class Account {
 		$contents = ob_get_clean();
 
 		// restore default account settings.
-		UM()->fields()->set_id   = $set_id;
-		UM()->fields()->set_mode = $set_mode;
-		UM()->fields()->editing  = $editing;
-		UM()->fields()->viewing  = $viewing;
+		UM()->fields()->set_id    = $set_id;
+		UM()->fields()->set_mode  = $set_mode;
+		UM()->fields()->editing   = $editing;
+		UM()->fields()->viewing   = $viewing;
+		UM()->form()->nonce       = $form_nonce;
+		UM()->form()->form_suffix = $form_suffix;
 
 		return $contents;
 	}
