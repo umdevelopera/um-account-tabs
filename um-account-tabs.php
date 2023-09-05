@@ -61,11 +61,11 @@ if ( ! function_exists( 'um_account_tabs_check_dependencies' ) ) {
 					UM()->set_class( 'Account_Tabs', true );
 				}
 			}
-			add_action( 'plugins_loaded', 'um_account_tabs_init', -10, 1 );
+			add_action( 'plugins_loaded', 'um_account_tabs_init', 4, 1 );
 		}
 	}
 }
-add_action( 'plugins_loaded', 'um_account_tabs_check_dependencies', -20 );
+add_action( 'plugins_loaded', 'um_account_tabs_check_dependencies', 2 );
 
 // Loads a plugin's translated strings.
 if ( ! function_exists( 'um_account_tabs_plugins_loaded' ) ) {
@@ -75,4 +75,4 @@ if ( ! function_exists( 'um_account_tabs_plugins_loaded' ) ) {
 		load_plugin_textdomain( um_account_tabs_textdomain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
 }
-add_action( 'plugins_loaded', 'um_account_tabs_plugins_loaded', 0 );
+add_action( 'plugins_loaded', 'um_account_tabs_plugins_loaded', 6 );
