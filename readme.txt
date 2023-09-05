@@ -4,11 +4,11 @@ Author URI: https://github.com/umdevelopera
 Plugin URI: https://github.com/umdevelopera/um-account-tabs
 Tags: ultimate member, account, profile, tabs
 Requires at least: 6.0
-Tested up to: 6.2.2
-Stable tag: 1.0.2
+Tested up to: 6.3.1
+Stable tag: 1.0.3
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
-Requires UM core at least: 2.5.0
+Requires UM core at least: 2.6.8
 
 == Description ==
 
@@ -29,6 +29,11 @@ You can install this plugin from the ZIP file as any other plugin. Follow this i
 This is a free extension created for the community. The Ultimate Member team does not provide any support for this extension. Open new issue in the GitHub repository if you face a problem: https://github.com/umdevelopera/um-account-tabs/issues
 
 == Changelog ==
+
+= 1.0.3: September 5, 2023 =
+
+* Fixed: Load classes manually to avoid an error that occurs if autoloader works wrong.
+* Fixed: Restore form nonce and form suffix to solve conflict with "Delete Account" feature.
 
 = 1.0.2: July 22, 2023 =
 
