@@ -157,9 +157,12 @@ class Account {
 		if ( empty( $form_id ) ) {
 			return '';
 		}
+		$args    = UM()->query()->post_data( $form_id );
 		$user_id = get_current_user_id();
 
-		// save profile settings.
+		// save account settings.
+		global $post;
+		$global_post = $post;
 		$set_id      = UM()->fields()->set_id;
 		$set_mode    = UM()->fields()->set_mode;
 		$editing     = UM()->fields()->editing;
@@ -168,14 +171,11 @@ class Account {
 		$form_suffix = UM()->form()->form_suffix;
 
 		// set profile settings.
+		$post = get_post( absint( UM()->config()->permalinks[ 'user' ] ) );
 		UM()->fields()->set_id   = $form_id;
 		UM()->fields()->set_mode = get_post_meta( $form_id, '_um_mode', true );
 		UM()->fields()->editing  = true;
 		UM()->fields()->viewing  = false;
-
-		$args = array(
-			'form_id' => $form_id,
-		);
 
 		ob_start();
 		do_action( 'um_before_profile_fields', $args );
@@ -190,7 +190,8 @@ class Account {
 
 		$contents = ob_get_clean();
 
-		// restore default account settings.
+		// restore account settings.
+		$post = $global_post;
 		UM()->fields()->set_id    = $set_id;
 		UM()->fields()->set_mode  = $set_mode;
 		UM()->fields()->editing   = $editing;

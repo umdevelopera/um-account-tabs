@@ -3,12 +3,12 @@
 	Plugin Name: Ultimate Member - Account tabs
 	Plugin URI:  https://github.com/umdevelopera/um-account-tabs
 	Description: Adds custom tabs to the user account.
-	Version:     1.0.3
+	Version:     1.0.4
 	Author:      umdevelopera
 	Author URI:  https://github.com/umdevelopera
 	Text Domain: um-account-tabs
 	Domain Path: /languages
-	UM version:  2.6.8
+	UM version:  2.7.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

@@ -12,15 +12,15 @@ __Note:__ This is a free extension created for the community. The Ultimate Membe
 
 __Note:__ This plugin requires the [Ultimate Member](https://wordpress.org/plugins/ultimate-member/) plugin to be installed first.
 
-### Clone from GitHub
+### How to install from GitHub
 Open git bash, navigate to the **plugins** folder and execute this command:
 
 `git clone --branch=main git@github.com:umdevelopera/um-account-tabs.git um-account-tabs`
 
 Once the plugin is cloned, enter your site admin dashboard and go to _wp-admin > Plugins > Installed Plugins_. Find the "Ultimate Member - Account tabs" plugin and click the "Activate" link.
 
-### Install from ZIP archive
-You can install this plugin from the [ZIP archive](https://drive.google.com/file/d/1iZ85_fNKUiee_2BdVFdWMpxD3KimZ9Sj/view) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
+### How to install from ZIP archive
+You can install this plugin from the [ZIP file](https://drive.google.com/file/d/1PlDvFg7zS26av5U7GaxXnOIl_sthELHM/view) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
 
 ## How to use
 Once the plugin is activated go to *wp-admin > Ultimate Member > Account Tabs*.
@@ -45,4 +45,4 @@ Ultimate Member documentation: https://docs.ultimatemember.com/
 
 Ultimate Member on wordpress.org: https://wordpress.org/plugins/ultimate-member
 
-Articles: [Account Tab](https://docs.ultimatemember.com/article/40-account-tab), [Extend Ultimate Member Account page with custom tabs/content](https://docs.ultimatemember.com/article/65-extend-ultimate-member-account-page-with-custom-tabs-content)
+Articles: [Account Tab](https://docs.ultimatemember.com/article/40-account-tab), [Extend Ultimate Member Account page with custom tabs/content](https://docs.ultimatemember.com/article/65-extend-ultimate-member-account-page-with-custom-tabs-content), [How to display custom fields in Account](https://docs.ultimatemember.com/article/1504-how-to-display-custom-fields-in-account)
