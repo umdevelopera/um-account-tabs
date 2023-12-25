@@ -3,18 +3,18 @@
 Author: umdevelopera
 Author URI: https://github.com/umdevelopera
 Plugin URI: https://github.com/umdevelopera/um-account-tabs
-Tags: ultimate member, account, profile, tabs
+Tags: ultimate member, account, tabs
 Requires at least: 5.5
-Tested up to: 6.4
+Tested up to: 6.4.2
 Requires UM core at least: 2.6.8
-Tested UM core up to: 2.8.0
-Stable tag: 1.0.4
+Tested UM core up to: 2.8.1
+Stable tag: 1.0.5
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
 == Description ==
 
-Adds custom tabs to users' accounts.
+Adds custom tabs to the Account page menu.
 
 = Key Features =
 
@@ -24,15 +24,23 @@ Adds custom tabs to users' accounts.
 
 = Documentation & Support =
 
-This is a free extension created for the community. The Ultimate Member team does not provide support for this extension. Open new issue in the GitHub repository if you face a problem: https://github.com/umdevelopera/um-account-tabs/issues
+This is a free extension created for the community. The Ultimate Member team does not provide support for this extension.
+Open new issue in the GitHub repository if you face a problem: https://github.com/umdevelopera/um-account-tabs/issues
+Documentation is the README section in the GitHub repository: https://github.com/umdevelopera/um-account-tabs
 
 == Installation ==
 
-Download ZIP file from GitHub or Google Drive. You can find download links here: https://github.com/umdevelopera/um-account-tabs
-
 You can install this plugin from the ZIP file as any other plugin. Follow this instruction: https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin
 
+Download ZIP file from GitHub or Google Drive. You can find download links here: https://github.com/umdevelopera/um-account-tabs
+
 == Changelog ==
+
+= 1.0.5: December 25, 2023 =
+
+* Added: The "Background color" setting used to set a color of the tab menu item.
+* Added: Columns "Position", "Embed form", "Roles restriction" to the "Account tabs" table.
+* Tweak: Documentation updated.
 
 = 1.0.4: October 19, 2023 =
 

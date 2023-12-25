@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ultimate Member - Account tabs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-11 20:06+0000\n"
+"POT-Creation-Date: 2023-12-25 19:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,52 +16,74 @@ msgstr ""
 "X-Loco-Version: 2.6.3; wp-6.1\n"
 "X-Domain: um-account-tabs"
 
-#: includes/admin/class-admin.php:37 includes/admin/class-admin.php:38
-#: includes/core/class-common.php:29 includes/core/class-common.php:41
+#: includes/admin/templates/account-tab/appearance.php:41
+msgid ""
+"A number from 1 to 999. Default is 800. The value for each tab must be "
+"unique."
+msgstr ""
+
+#: includes/admin/class-admin.php:51 includes/admin/class-admin.php:52
+#: includes/core/class-common.php:37 includes/core/class-common.php:49
 msgid "Account Tabs"
 msgstr ""
 
-#: includes/core/class-common.php:32
+#: includes/core/class-common.php:40
 msgid "Add New"
 msgstr ""
 
-#: includes/core/class-common.php:31
+#: includes/core/class-common.php:39
 msgid "Add New Tab"
 msgstr ""
 
 #. Description of the plugin
-msgid "Adds custom tabs to user account."
+msgid "Adds custom tabs to the Account page menu"
 msgstr ""
 
-#: includes/core/class-common.php:30
+#: includes/core/class-common.php:38
 msgid "All Tabs"
 msgstr ""
 
-#: includes/admin/class-admin.php:140
-msgid "Customize this tab"
+#: includes/admin/class-admin.php:221
+msgid "Appearance"
 msgstr ""
 
-#: includes/admin/class-admin.php:131
+#: includes/admin/templates/account-tab/appearance.php:27
+msgid "Background color"
+msgstr ""
+
+#: includes/admin/class-admin.php:93
+msgid "Date"
+msgstr ""
+
+#: includes/admin/class-admin.php:212
 msgid "Display Settings"
 msgstr ""
 
-#: includes/core/class-common.php:34
+#: includes/core/class-common.php:42
 msgid "Edit Tab"
 msgstr ""
 
-#: includes/admin/templates/account-tab/um-form.php:51
+#: includes/admin/templates/account-tab/um-form.php:53
 msgid "Embed a profile form"
 msgstr ""
 
-#. Author URI of the plugin
-msgid "https://ultimatemember.com/support/"
+#: includes/admin/class-admin.php:91
+msgid "Embed form"
 msgstr ""
 
-#: includes/admin/templates/account-tab/icon.php:27
+#. Author URI of the plugin
+msgid "https://github.com/umdevelopera"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/umdevelopera/um-account-tabs"
+msgstr ""
+
+#: includes/admin/templates/account-tab/appearance.php:33
 msgid "Icon"
 msgstr ""
 
-#: includes/core/class-common.php:33
+#: includes/core/class-common.php:41
 msgid "New Tab"
 msgstr ""
 
@@ -69,30 +91,44 @@ msgstr ""
 msgid "No form"
 msgstr ""
 
-#: includes/admin/templates/account-tab/icon.php:33
+#: includes/admin/class-admin.php:90
+#: includes/admin/templates/account-tab/appearance.php:39
 msgid "Position"
 msgstr ""
 
-#: includes/core/class-common.php:27
+#: includes/core/class-common.php:35
 msgctxt "Post Type General Name"
 msgid "Account tabs"
 msgstr ""
 
-#: includes/core/class-common.php:28
+#: includes/core/class-common.php:36
 msgctxt "Post Type Singular Name"
 msgid "Account tab"
 msgstr ""
 
-#: includes/admin/class-admin.php:122
+#: includes/admin/class-admin.php:203
 msgid "Pre-defined content"
+msgstr ""
+
+#: includes/admin/class-admin.php:92
+msgid "Roles restriction"
 msgstr ""
 
 #: includes/admin/templates/account-tab/access.php:25
 msgid "Show on these roles accounts"
 msgstr ""
 
+#. %s - plugin name.
+#: um-account-tabs.php:45
+#, php-format
+msgid ""
+"The <strong>%s</strong> extension requires the Ultimate Member plugin to be "
+"activated to work properly. You can download it <a href=\"https://wordpress."
+"org/plugins/ultimate-member\">here</a>"
+msgstr ""
+
 #: includes/admin/templates/account-tab/access.php:14
-#: includes/admin/templates/account-tab/icon.php:14
+#: includes/admin/templates/account-tab/appearance.php:14
 #: includes/admin/templates/account-tab/um-form.php:14
 msgid "These settings are obtained from a Account tab in the default language"
 msgstr ""
@@ -102,27 +138,27 @@ msgid "Ultimate Member - Account tabs"
 msgstr ""
 
 #. Author of the plugin
-msgid "Ultimate Member support"
+msgid "umdevelopera"
 msgstr ""
 
-#: includes/core/class-account.php:72
+#: includes/core/class-account.php:88
 msgid "Update"
 msgstr ""
 
-#: includes/core/class-common.php:35
+#: includes/core/class-common.php:43
 msgid "Update Tab"
 msgstr ""
 
-#: includes/core/class-common.php:36
+#: includes/core/class-common.php:44
 msgid "View Tab"
 msgstr ""
 
-#: includes/core/class-common.php:37
+#: includes/core/class-common.php:45
 msgid "View Tabs"
 msgstr ""
 
 #: includes/admin/templates/account-tab/access.php:26
 msgid ""
-"You could select the roles which have the current account tab at their form. "
-"If empty, account tab is visible for all roles at their forms."
+"You can choose the roles in whose accounts this tab should be displayed. The "
+"tab is displayed in all accounts if the setting is empty."
 msgstr ""

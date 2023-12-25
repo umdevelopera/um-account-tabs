@@ -21,10 +21,10 @@ $fields = array(
 	array(
 		'id'      => '_can_have_this_tab_roles',
 		'type'    => 'select',
-		'options' => $all_roles,
-		'label'   => __( 'Show on these roles accounts', 'um-account-tabs' ),
-		'tooltip' => __( 'You could select the roles which have the current account tab at their form. If empty, account tab is visible for all roles at their forms.', 'um-account-tabs' ),
 		'multi'   => true,
+		'label'   => __( 'Show on these roles accounts', 'um-account-tabs' ),
+		'tooltip' => __( 'You can choose the roles in whose accounts this tab should be displayed. The tab is displayed in all accounts if the setting is empty.', 'um-account-tabs' ),
+		'options' => $all_roles,
 		'value'   => get_post_meta( $tab_id, '_can_have_this_tab_roles', true ),
 	),
 );

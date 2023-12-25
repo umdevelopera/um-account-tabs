@@ -2,14 +2,14 @@
 /**
  * Plugin Name: Ultimate Member - Account tabs
  * Plugin URI:  https://github.com/umdevelopera/um-account-tabs
- * Description: Adds custom tabs to the user account.
+ * Description: Adds custom tabs to the Account page menu
  * Author:      umdevelopera
  * Author URI:  https://github.com/umdevelopera
  * Text Domain: um-account-tabs
  * Domain Path: /languages
  *
- * Version: 1.0.5-alpha1
- * UM version: 2.8.1
+ * Version: 1.0.5
+ * UM version: 2.7.0
  * Requires at least: 5.5
  * Requires PHP: 5.6
  *

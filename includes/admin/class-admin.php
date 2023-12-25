@@ -115,7 +115,7 @@ if ( ! class_exists( 'um_ext\um_account_tabs\admin\Admin' ) ) {
 				case 'form':
 					$form_id = get_post_meta( $id, '_um_form', true );
 					if ( $form_id ) {
-						echo get_the_title( $id ) . ' (' . $id . ')';
+						echo get_the_title( $form_id ) . ' (' . $form_id . ')';
 					}
 					break;
 
