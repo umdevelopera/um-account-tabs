@@ -22,23 +22,39 @@ if ( empty( $position ) ) {
 
 $fields = array(
 	array(
+		'id'    => '_color',
+		'type'  => 'color',
+		'label' => __( 'Background color', 'um-account-tabs' ),
+		'value' => (string) get_post_meta( $tab_id, '_color', true ),
+	),
+	array(
 		'id'    => '_icon',
 		'type'  => 'icon',
 		'label' => __( 'Icon', 'um-account-tabs' ),
 		'value' => (string) get_post_meta( $tab_id, '_icon', true ),
 	),
 	array(
-		'id'    => '_position',
-		'type'  => 'number',
-		'label' => __( 'Position', 'um-account-tabs' ),
-		'value' => (int) $position,
+		'id'      => '_position',
+		'type'    => 'number',
+		'label'   => __( 'Position', 'um-account-tabs' ),
+		'value'   => (int) $position,
+		'tooltip' => __( 'A number from 1 to 999. Default is 800. The value for each tab must be unique.', 'um-account-tabs' ),
 	),
 );
 
 UM()->admin_forms(
 	array(
-		'class'     => 'um-account-tab-icon um-top-label',
+		'class'     => 'um-account-tab-appearance um-top-label',
 		'prefix_id' => 'um_account_tab',
 		'fields'    => $fields,
 	)
 )->render_form();
+
+?>
+<style type="text/css">
+	.um-account-tab-appearance .um-forms-line td > label {
+		margin: 0 0 5px 0;
+		width: 100%;
+	}
+</style>
+<?php

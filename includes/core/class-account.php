@@ -31,10 +31,15 @@ class Account {
 	 * Account constructor.
 	 */
 	public function __construct() {
-		add_filter( 'um_account_page_default_tabs_hook', array( &$this, 'add_tabs' ), 100, 1 );
+
+		// Add custom account tabs.
+		add_filter( 'um_account_page_default_tabs_hook', array( $this, 'add_tabs' ), 100, 1 );
+
+		// Print styles to customize account tabs.
+		add_action( 'um_after_account_page_load', array( $this, 'print_styles' ), 30, 1 );
 
 		// Redirect to the same page after updating the profile form in account.
-		add_filter( 'um_update_profile_redirect_after', array( &$this, 'update_profile_redirect' ), 10, 3 );
+		add_filter( 'um_update_profile_redirect_after', array( $this, 'update_profile_redirect' ), 10, 3 );
 	}
 
 	/**
@@ -44,19 +49,22 @@ class Account {
 	 */
 	public function get_tabs() {
 		if ( ! is_array( $this->tabs ) ) {
-			$this->tabs = get_posts(
-				array(
-					'post_type'      => 'um_account_tabs',
-					'posts_per_page' => -1,
-				)
+			$args = array(
+				'post_type'      => 'um_account_tabs',
+				'posts_per_page' => -1,
 			);
+			$tabs = get_posts( $args );
+
+			foreach( $tabs as $tab ){
+				$this->tabs[ $tab->post_name ] = $tab;
+			}
 		}
 		return $this->tabs;
 	}
 
 
 	/**
-	 * Add custom account tabs.
+	 * Adds custom account tabs.
 	 *
 	 * @param array $tabs All account tabs.
 	 *
@@ -68,51 +76,20 @@ class Account {
 				continue;
 			}
 
-			$icon     = empty( $tab->_icon ) ? 'um-icon-plus' : $tab->_icon;
 			$position = absint( $tab->_position );
 
 			// Add tab to menu.
 			$tabs[ $position ][ $tab->post_name ] = array(
-				'icon'         => $icon,
+				'icon'         => empty( $tab->_icon ) ? 'um-icon-plus' : $tab->_icon,
 				'title'        => $tab->post_title,
+				'color'        => $tab->_color,
 				'custom'       => true,
 				'show_button'  => ! empty( $tab->_um_form ),
 				'submit_title' => __( 'Update', 'um-account-tabs' ),
 			);
 
 			// Show tab content.
-			add_action(
-				'um_account_content_hook_' . $tab->post_name,
-				function( $args ) use ( $tab ) {
-					$output = '';
-
-					$userdata     = get_userdata( get_current_user_id() );
-					$placeholders = array(
-						'{user_id}'                => get_current_user_id(),
-						'{first_name}'             => $userdata->first_name,
-						'{last_name}'              => $userdata->last_name,
-						'{user_email}'             => $userdata->user_email,
-						'{display_name}'           => $userdata->display_name,
-						'[ultimatemember form_id=' => '[',
-					);
-
-					$tab_content = str_replace( array_keys( $placeholders ), array_values( $placeholders ), $tab->post_content );
-
-					// Fix conflict that may appear if the tab contains Elementor template.
-					if ( class_exists( '\Elementor\Plugin' ) ) {
-						\Elementor\Plugin::instance()->frontend->remove_content_filter();
-						$output .= apply_filters( 'the_content', $tab_content );
-						\Elementor\Plugin::instance()->frontend->add_content_filter();
-					} else {
-						$output .= apply_filters( 'the_content', $tab_content );
-					}
-
-					$output .= $this->um_custom_tab_form( $tab->ID, $tab->_um_form );
-
-					return $output;
-				}
-			);
-
+			add_filter( 'um_account_content_hook_' . $tab->post_name, array( $this, 'display_tab_content' ), 10, 2 );
 		}
 		return $tabs;
 	}
@@ -142,6 +119,81 @@ class Account {
 		}
 
 		return false;
+	}
+
+
+	/**
+	 * Displays custom tab content.
+	 *
+	 * Hook: um_account_content_hook_{$id}
+	 *
+	 * @see \um\core\Account::get_tab_fields()
+	 *
+	 * @since 1.0.5
+	 *
+	 * @param string $output         Account tab Output.
+	 * @param array  $shortcode_args Account shortcode arguments.
+	 *
+	 * @return string
+	 */
+	public function display_tab_content( $output = '', $shortcode_args = array() ) {
+
+		$hook_name = current_filter();
+		$tab_id    = str_replace( 'um_account_content_hook_', '', $hook_name );
+
+		if ( $tab_id && array_key_exists( $tab_id, $this->tabs ) ) {
+			$tab = $this->tabs[ $tab_id ];
+
+			$userdata     = wp_get_current_user();
+			$placeholders = array(
+				'{user_id}'                => $userdata->ID,
+				'{first_name}'             => $userdata->first_name,
+				'{last_name}'              => $userdata->last_name,
+				'{user_email}'             => $userdata->user_email,
+				'{display_name}'           => $userdata->display_name,
+				'[ultimatemember form_id=' => '[',
+			);
+
+			$tab_content = strtr( $tab->post_content, $placeholders );
+
+			// Fix conflict that may appear if the tab contains Elementor template.
+			if ( class_exists( '\Elementor\Plugin' ) ) {
+				\Elementor\Plugin::instance()->frontend->remove_content_filter();
+				$output = apply_filters( 'the_content', $tab_content );
+				\Elementor\Plugin::instance()->frontend->add_content_filter();
+			} else {
+				$output = apply_filters( 'the_content', $tab_content );
+			}
+
+			if ( ! empty( $tab->_um_form ) ) {
+				$output .= $this->um_custom_tab_form( $tab->ID, $tab->_um_form );
+			}
+		}
+
+		return $output;
+	}
+
+
+	/**
+	 * Print styles to customize account tabs.
+	 */
+	public function print_styles() {
+		$colors = array();
+		foreach ( $this->get_tabs() as $tab_id => $tab ) {
+			if ( ! empty( $tab->_color ) ) {
+				$colors[ $tab_id ] = $tab->_color;
+			}
+		}
+		if ( $colors ) {
+			?><style type="text/css"><?php
+			foreach ( $colors as $tab_id => $color ) {
+				echo "\n";
+				?>.um-account .um-account-side a.um-account-link[data-tab="<?php echo esc_attr( $tab_id ); ?>"] { background-color: <?php echo esc_attr( $color ); ?>; }<?php
+				echo "\n";
+				?>.um-account .um-account-side a.um-account-link[data-tab="<?php echo esc_attr( $tab_id ); ?>"]:hover { box-shadow: inset 0px 0px 2em 2em rgba(0,0,0,0.05); }<?php
+			}
+			?></style><?php
+		}
 	}
 
 
