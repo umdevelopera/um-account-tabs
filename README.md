@@ -1,7 +1,6 @@
 # Ultimate Member - Account tabs
-Adds custom tabs to users' accounts.
 
-__Note:__ This is a free extension created for the community. The Ultimate Member team does not provide any support for this extension.
+Adds custom tabs to users' accounts.
 
 ## Key features
 - Ability to create custom account tabs with custom title, content and icon.
@@ -13,6 +12,7 @@ __Note:__ This is a free extension created for the community. The Ultimate Membe
 __Note:__ This plugin requires the [Ultimate Member](https://wordpress.org/plugins/ultimate-member/) plugin to be installed first.
 
 ### How to install from GitHub
+
 Open git bash, navigate to the **plugins** folder and execute this command:
 
 `git clone --branch=main git@github.com:umdevelopera/um-account-tabs.git um-account-tabs`
@@ -20,14 +20,16 @@ Open git bash, navigate to the **plugins** folder and execute this command:
 Once the plugin is cloned, enter your site admin dashboard and go to _wp-admin > Plugins > Installed Plugins_. Find the "Ultimate Member - Account tabs" plugin and click the "Activate" link.
 
 ### How to install from ZIP archive
+
 You can install this plugin from the [ZIP file](https://drive.google.com/file/d/1PlDvFg7zS26av5U7GaxXnOIl_sthELHM/view) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
 
 ## How to use
+
 Once the plugin is activated go to *wp-admin > Ultimate Member > Account Tabs*.
 Click the __Add New__ button, then configure a new account tab as shown on the image below.
 Select the profile form you want to embed to account in the setting __Embed a profile form__.
 
-### Screenshots:
+### Screenshots
 
 Image - How to create a new account tab.
 ![WP, Ultimate Member, Account Tabs](https://user-images.githubusercontent.com/113178913/200563260-7c127190-2933-4b93-94b7-ddf190706bb9.png)
@@ -38,11 +40,16 @@ Image - Custom account tab settings.
 Image - An example of the embed profile form in Account
 ![example - custom tab with profile form in account](https://user-images.githubusercontent.com/113178913/200563307-c69e7d23-e568-41c6-acb6-712ea32e87a2.png)
 
-## Related links:
-Ultimate Member home page: https://ultimatemember.com/
+## Support
 
-Ultimate Member documentation: https://docs.ultimatemember.com/
+This is a free extension created for the community. The Ultimate Member team does not provide any support for this extension. Open new [issue](https://github.com/umdevelopera/um-account-tabs/issues) if you are facing a problem or have a suggestion.
 
-Ultimate Member on wordpress.org: https://wordpress.org/plugins/ultimate-member
+## Related links
+
+Ultimate Member home page: https://ultimatemember.com
+
+Ultimate Member documentation: https://docs.ultimatemember.com
+
+Ultimate Member download: https://wordpress.org/plugins/ultimate-member
 
 Articles: [Account Tab](https://docs.ultimatemember.com/article/40-account-tab), [Extend Ultimate Member Account page with custom tabs/content](https://docs.ultimatemember.com/article/65-extend-ultimate-member-account-page-with-custom-tabs-content), [How to display custom fields in Account](https://docs.ultimatemember.com/article/1504-how-to-display-custom-fields-in-account)
