@@ -5,10 +5,10 @@ Author URI: https://github.com/umdevelopera
 Plugin URI: https://github.com/umdevelopera/um-account-tabs
 Tags: ultimate member, account, tabs
 Requires at least: 5.5
-Tested up to: 6.4.2
-Requires UM core at least: 2.6.8
-Tested UM core up to: 2.8.1
-Stable tag: 1.0.5
+Tested up to: 6.6.1
+Requires UM core at least: 2.8.0
+Tested UM core up to: 2.8.7
+Stable tag: 1.0.6
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -35,6 +35,10 @@ You can install this plugin from the ZIP file as any other plugin. Follow this i
 Download ZIP file from GitHub or Google Drive. You can find download links here: https://github.com/umdevelopera/um-account-tabs
 
 == Changelog ==
+
+= 1.0.6: September 5, 2024 =
+
+* Fixed: The "Icon" setting is updated to support a new icons library used in the Ultimate Member core plugin since version 2.8.6.
 
 = 1.0.5: December 25, 2023 =
 
