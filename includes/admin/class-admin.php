@@ -275,7 +275,7 @@ if ( ! class_exists( 'um_ext\um_account_tabs\admin\Admin' ) ) {
 			$color = isset( $input['_color'] ) ? sanitize_hex_color( $input['_color'] ) : '';
 			update_post_meta( $post_id, '_color', $color );
 
-			$icon = isset( $input['_icon'] ) ? sanitize_key( $input['_icon'] ) : '';
+			$icon = isset( $input['_icon'] ) ? sanitize_text_field( $input['_icon'] ) : '';
 			update_post_meta( $post_id, '_icon', $icon );
 
 			$position = isset( $input['_position'] ) ? absint( $input['_position'] ) : '';
