@@ -8,8 +8,8 @@
  * Text Domain: um-account-tabs
  * Domain Path: /languages
  *
- * Version: 1.0.5
- * UM version: 2.7.0
+ * Version: 1.0.6
+ * UM version: 2.8.0
  * Requires at least: 5.5
  * Requires PHP: 5.6
  *
