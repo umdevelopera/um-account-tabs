@@ -55,6 +55,7 @@ class Account {
 			);
 			$tabs = get_posts( $args );
 
+			$this->tabs = array();
 			foreach( $tabs as $tab ){
 				$this->tabs[ $tab->post_name ] = $tab;
 			}
