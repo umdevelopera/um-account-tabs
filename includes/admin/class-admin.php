@@ -57,25 +57,6 @@ if ( ! class_exists( 'um_ext\um_account_tabs\admin\Admin' ) ) {
 
 
 		/**
-		 * Enqueue admin scripts.
-		 *
-		 * @global object $current_screen
-		 */
-		public function enqueue() {
-			global $current_screen;
-			if ( isset( $current_screen ) && 'um_account_tabs' === $current_screen->id ) {
-				wp_enqueue_script(
-					'um-account-tabs-admin',
-					um_account_tabs_url . '/assets/js/um-account-tabs-admin.js',
-					array( 'jquery' ),
-					um_account_tabs_version,
-					true
-				);
-			}
-		}
-
-
-		/**
 		 * Adds custom columns to the table "Account tabs".
 		 *
 		 * @param array $columns  An array of columns.
@@ -178,7 +159,6 @@ if ( ! class_exists( 'um_ext\um_account_tabs\admin\Admin' ) ) {
 		public function init_metaboxes() {
 			global $current_screen;
 			if ( isset( $current_screen ) && 'um_account_tabs' === $current_screen->id ) {
-				add_action( 'admin_enqueue_scripts', array( &$this, 'enqueue' ) );
 				add_action( 'add_meta_boxes', array( &$this, 'add_metaboxes' ), 1 );
 				add_action( 'save_post_um_account_tabs', array( &$this, 'save_metaboxes_data' ), 10, 3 );
 			}
@@ -199,8 +179,8 @@ if ( ! class_exists( 'um_ext\um_account_tabs\admin\Admin' ) ) {
 			}
 
 			add_meta_box(
-				'um-admin-custom-account-tab/um-form{' . um_account_tabs_path . '}',
-				__( 'Pre-defined content', 'um-account-tabs' ),
+				'um-admin-custom-account-tab/embed{' . um_account_tabs_path . '}',
+				__( 'Embed content', 'um-account-tabs' ),
 				array( UM()->metabox(), 'load_metabox_custom' ),
 				'um_account_tabs',
 				'normal',
@@ -209,7 +189,7 @@ if ( ! class_exists( 'um_ext\um_account_tabs\admin\Admin' ) ) {
 
 			add_meta_box(
 				'um-admin-custom-account-tab/access{' . um_account_tabs_path . '}',
-				__( 'Display Settings', 'um-account-tabs' ),
+				__( 'Restrictions', 'um-account-tabs' ),
 				array( UM()->metabox(), 'load_metabox_custom' ),
 				'um_account_tabs',
 				'side',
@@ -241,45 +221,36 @@ if ( ! class_exists( 'um_ext\um_account_tabs\admin\Admin' ) ) {
 			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 				return;
 			}
-			if ( empty( $_POST ) ) {
+			if ( empty( $_POST ) || empty( $_POST['um_account_tab'] ) ) {
 				return;
 			}
-
 			check_admin_referer( 'update-post_' . $post_id );
 
-			if ( UM()->external_integrations()->is_wpml_active() ) {
-				global $sitepress;
-				$tab_id = $sitepress->get_object_id( $post_id, 'um_account_tabs', true, $sitepress->get_default_language() );
-				if ( $tab_id && $tab_id !== $post_id ) {
-					return;
-				}
-			}
-
-			if ( empty( $_POST['um_account_tab'] ) ) {
-				return;
-			}
 			$input = map_deep( wp_unslash( $_POST['um_account_tab'] ), 'sanitize_text_field' );
 
-			$form = '';
-			if ( isset( $input['_um_form'] ) ) {
-				$form = absint( $input['_um_form'] );
-			}
+			$form = isset( $input['_um_form'] ) ? absint( $input['_um_form'] ) : '';
 			update_post_meta( $post_id, '_um_form', $form );
 
-			$roles = array();
-			if ( isset( $input['_can_have_this_tab_roles'] ) && is_array( $input['_can_have_this_tab_roles'] ) ) {
-				$roles = $input['_can_have_this_tab_roles'];
-			}
+			$form_header = isset( $input['_um_form_header'] ) ? absint( $input['_um_form_header'] ) : 0;
+			update_post_meta( $post_id, '_um_form_header', $form_header );
+
+			$roles = isset( $input['_can_have_this_tab_roles'] ) && is_array( $input['_can_have_this_tab_roles'] ) ? $input['_can_have_this_tab_roles'] : '';
 			update_post_meta( $post_id, '_can_have_this_tab_roles', $roles );
 
 			$color = isset( $input['_color'] ) ? sanitize_hex_color( $input['_color'] ) : '';
 			update_post_meta( $post_id, '_color', $color );
+
+			$color_text = isset( $input['_color_text'] ) ? sanitize_hex_color( $input['_color_text'] ) : '';
+			update_post_meta( $post_id, '_color_text', $color_text );
 
 			$icon = isset( $input['_icon'] ) ? sanitize_text_field( $input['_icon'] ) : '';
 			update_post_meta( $post_id, '_icon', $icon );
 
 			$position = isset( $input['_position'] ) ? absint( $input['_position'] ) : '';
 			update_post_meta( $post_id, '_position', $position );
+
+			$tab_slug = isset( $input['_tab_slug'] ) ? sanitize_title( $input['_tab_slug'] ) : '';
+			update_post_meta( $post_id, '_tab_slug', $tab_slug );
 		}
 	}
 }

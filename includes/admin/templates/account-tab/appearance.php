@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $post;
 
-$tab_id = $post->ID;
+$tab_id   = $post->ID;
 if ( UM()->external_integrations()->is_wpml_active() ) {
 	global $sitepress;
 	$default_lang_tab_id = $sitepress->get_object_id( $tab_id, 'um_account_tabs', true, $sitepress->get_default_language() );
@@ -19,14 +19,13 @@ $position = get_post_meta( $tab_id, '_position', true );
 if ( empty( $position ) ) {
 	$position = 800;
 }
+$tab_slug = get_post_meta( $tab_id, '_tab_slug', true );
+if ( empty( $tab_slug ) ) {
+	$tab_slug = $post->post_name;
+}
+
 
 $fields = array(
-	array(
-		'id'    => '_color',
-		'type'  => 'color',
-		'label' => __( 'Background color', 'um-account-tabs' ),
-		'value' => (string) get_post_meta( $tab_id, '_color', true ),
-	),
 	array(
 		'id'    => '_icon',
 		'type'  => 'icon',
@@ -34,11 +33,30 @@ $fields = array(
 		'value' => (string) get_post_meta( $tab_id, '_icon', true ),
 	),
 	array(
+		'id'    => '_color',
+		'type'  => 'color',
+		'label' => __( 'Background color', 'um-account-tabs' ),
+		'value' => (string) get_post_meta( $tab_id, '_color', true ),
+	),
+	array(
+		'id'    => '_color_text',
+		'type'  => 'color',
+		'label' => __( 'Text color', 'um-account-tabs' ),
+		'value' => (string) get_post_meta( $tab_id, '_color_text', true ),
+	),
+	array(
 		'id'      => '_position',
 		'type'    => 'number',
-		'label'   => __( 'Position', 'um-account-tabs' ),
+		'label'   => __( 'Tab position', 'um-account-tabs' ),
 		'value'   => (int) $position,
 		'tooltip' => __( 'A number from 1 to 999. Default is 800. The value for each tab must be unique.', 'um-account-tabs' ),
+	),
+	array(
+		'id'      => '_tab_slug',
+		'type'    => 'text',
+		'label'   => __( 'Tab slug', 'um-account-tabs' ),
+		'value'   => $tab_slug,
+		'tooltip' => __( 'This is a part of the account page URL specific for this tab. Default post slug.', 'um-account-tabs' ),
 	),
 );
 

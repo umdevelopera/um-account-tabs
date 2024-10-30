@@ -48,8 +48,6 @@ class UM_Account_Tabs {
 		} elseif ( UM()->is_request( 'frontend' ) ) {
 			$this->account();
 		}
-
-		add_action( 'plugins_loaded', array( $this, 'textdomain' ), 9 );
 	}
 
 
@@ -86,15 +84,5 @@ class UM_Account_Tabs {
 			UM()->classes['um_account_tabs_common'] = new um_ext\um_account_tabs\core\Common();
 		}
 		return UM()->classes['um_account_tabs_common'];
-	}
-
-
-	/**
-	 * Loads a plugin's translated strings.
-	 */
-	public function textdomain() {
-		$locale = get_locale() ? get_locale() : 'en_US';
-		load_textdomain( um_account_tabs_textdomain, WP_LANG_DIR . '/plugins/' . um_account_tabs_textdomain . '-' . $locale . '.mo' );
-		load_plugin_textdomain( um_account_tabs_textdomain, false, dirname( um_account_tabs_plugin ) . '/languages/' );
 	}
 }

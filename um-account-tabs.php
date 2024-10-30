@@ -8,12 +8,12 @@
  * Text Domain: um-account-tabs
  * Domain Path: /languages
  *
- * Version: 1.0.6
- * UM version: 2.8.0
- * Requires at least: 5.5
- * Requires PHP: 5.6
+ * Requires at least: 6.5
+ * Requires PHP: 7.4
+ * UM version: 2.8.9
+ * Version: 1.1.0
  *
- * @package UM Tools
+ * @package um_ext\um_account_tabs
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
-$plugin_data = get_plugin_data( __FILE__ );
+$plugin_data = get_plugin_data( __FILE__, true, false );
 
 define( 'um_account_tabs_url', plugin_dir_url( __FILE__ ) );
 define( 'um_account_tabs_path', plugin_dir_path( __FILE__ ) );
@@ -30,7 +30,6 @@ define( 'um_account_tabs_plugin', plugin_basename( __FILE__ ) );
 define( 'um_account_tabs_extension', $plugin_data['Name'] );
 define( 'um_account_tabs_version', $plugin_data['Version'] );
 define( 'um_account_tabs_textdomain', 'um-account-tabs' );
-define( 'um_account_tabs_requires', '2.7.0' );
 
 
 // Check dependencies.

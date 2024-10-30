@@ -26,6 +26,13 @@ class Account {
 	 */
 	protected $tabs = null;
 
+	/**
+	 * Used to prevent displaying the profile header twice.
+	 *
+	 * @var bool
+	 */
+	private $is_profile_header_shown = false;
+
 
 	/**
 	 * Account constructor.
@@ -37,10 +44,48 @@ class Account {
 
 		// Print styles to customize account tabs.
 		add_action( 'um_after_account_page_load', array( $this, 'print_styles' ), 30, 1 );
+		add_action( 'wp_enqueue_scripts', array( &$this, 'enqueue_script' ) );
 
 		// Redirect to the same page after updating the profile form in account.
 		add_filter( 'um_update_profile_redirect_after', array( $this, 'update_profile_redirect' ), 10, 3 );
+
+		// Placeholders.
+		add_filter( 'um_template_tags_patterns_hook', array( $this, 'add_placeholder' ) );
+		add_filter( 'um_template_tags_replaces_hook', array( $this, 'add_replace_placeholder' ) );
 	}
+
+
+	/**
+	 * UM Placeholders.
+	 *
+	 * @param array $placeholders
+	 *
+	 * @return array
+	 */
+	public function add_placeholder( $placeholders ) {
+		$placeholders[] = '{admin_email}';
+		$placeholders[] = '{site_url}';
+		$placeholders[] = '{user_profile_link}';
+		$placeholders[] = '{user_avatar}';
+		return $placeholders;
+	}
+
+
+	/**
+	 * UM Replace Placeholders.
+	 *
+	 * @param array $replace_placeholders
+	 *
+	 * @return array
+	 */
+	public function add_replace_placeholder( $replace_placeholders ) {
+		$replace_placeholders[] = um_admin_email();
+		$replace_placeholders[] = get_bloginfo( 'url' );
+		$replace_placeholders[] = um_user_profile_url();
+		$replace_placeholders[] = get_avatar( um_user( 'ID' ), 190 );
+		return $replace_placeholders;
+	}
+
 
 	/**
 	 * Get all custom account tabs like posts array.
@@ -50,14 +95,27 @@ class Account {
 	public function get_tabs() {
 		if ( ! is_array( $this->tabs ) ) {
 			$args = array(
-				'post_type'      => 'um_account_tabs',
-				'posts_per_page' => -1,
+				'numberposts' => -1,
+				'post_status' => 'publish',
+				'post_type'   => 'um_account_tabs',
 			);
 			$tabs = get_posts( $args );
 
+			/**
+			 * Hook: um_account_tabs_get_tabs
+			 * Type: filter
+			 * Description: Filter custom account tabs. May be used to localize them.
+			 *
+			 * @since   1.0.7
+			 *
+			 * @param array $tabs All custom account tabs like posts array.
+			 */
+			$filtered_tabs = apply_filters( 'um_account_tabs_get_tabs', $tabs );
+
 			$this->tabs = array();
-			foreach( $tabs as $tab ){
-				$this->tabs[ $tab->post_name ] = $tab;
+			foreach( $filtered_tabs as $tab ){
+				$tab_slug                = $tab->_tab_slug ? sanitize_title( $tab->_tab_slug ) : $tab->post_name;
+				$this->tabs[ $tab_slug ] = $tab;
 			}
 		}
 		return $this->tabs;
@@ -78,9 +136,14 @@ class Account {
 			}
 
 			$position = absint( $tab->_position );
+			$tab_slug = $tab->_tab_slug ? sanitize_title( $tab->_tab_slug ) : $tab->post_name;
+
+			while ( array_key_exists( $position, $tabs ) ) {
+				$position++;
+			}
 
 			// Add tab to menu.
-			$tabs[ $position ][ $tab->post_name ] = array(
+			$tabs[ $position ][ $tab_slug ] = array(
 				'icon'         => empty( $tab->_icon ) ? 'um-icon-plus' : $tab->_icon,
 				'title'        => $tab->post_title,
 				'color'        => $tab->_color,
@@ -90,7 +153,7 @@ class Account {
 			);
 
 			// Show tab content.
-			add_filter( 'um_account_content_hook_' . $tab->post_name, array( $this, 'display_tab_content' ), 10, 2 );
+			add_filter( 'um_account_content_hook_' . $tab_slug, array( $this, 'display_tab_content' ), 10, 2 );
 		}
 		return $tabs;
 	}
@@ -143,31 +206,20 @@ class Account {
 		$tab_id    = str_replace( 'um_account_content_hook_', '', $hook_name );
 
 		if ( $tab_id && array_key_exists( $tab_id, $this->tabs ) ) {
-			$tab = $this->tabs[ $tab_id ];
+			$tab         = $this->tabs[ $tab_id ];
+			$content     = wpautop( $tab->post_content );
+			$tab_content = um_convert_tags( $content, array(), false );
 
-			$userdata     = wp_get_current_user();
-			$placeholders = array(
-				'{user_id}'                => $userdata->ID,
-				'{first_name}'             => $userdata->first_name,
-				'{last_name}'              => $userdata->last_name,
-				'{user_email}'             => $userdata->user_email,
-				'{display_name}'           => $userdata->display_name,
-				'[ultimatemember form_id=' => '[',
-			);
-
-			$tab_content = strtr( $tab->post_content, $placeholders );
-
-			// Fix conflict that may appear if the tab contains Elementor template.
 			if ( class_exists( '\Elementor\Plugin' ) ) {
 				\Elementor\Plugin::instance()->frontend->remove_content_filter();
-				$output = apply_filters( 'the_content', $tab_content );
+			}
+			$output = apply_filters( 'the_content', $tab_content );
+			if ( class_exists( '\Elementor\Plugin' ) ) {
 				\Elementor\Plugin::instance()->frontend->add_content_filter();
-			} else {
-				$output = apply_filters( 'the_content', $tab_content );
 			}
 
 			if ( ! empty( $tab->_um_form ) ) {
-				$output .= $this->um_custom_tab_form( $tab->ID, $tab->_um_form );
+				$output .= $this->display_embeded_form( $tab_id, $tab->_um_form );
 			}
 		}
 
@@ -176,40 +228,18 @@ class Account {
 
 
 	/**
-	 * Print styles to customize account tabs.
-	 */
-	public function print_styles() {
-		$colors = array();
-		foreach ( $this->get_tabs() as $tab_id => $tab ) {
-			if ( ! empty( $tab->_color ) ) {
-				$colors[ $tab_id ] = $tab->_color;
-			}
-		}
-		if ( $colors ) {
-			?><style type="text/css"><?php
-			foreach ( $colors as $tab_id => $color ) {
-				echo "\n";
-				?>.um-account .um-account-side a.um-account-link[data-tab="<?php echo esc_attr( $tab_id ); ?>"] { background-color: <?php echo esc_attr( $color ); ?>; }<?php
-				echo "\n";
-				?>.um-account .um-account-side a.um-account-link[data-tab="<?php echo esc_attr( $tab_id ); ?>"]:hover { box-shadow: inset 0px 0px 2em 2em rgba(0,0,0,0.05); }<?php
-			}
-			?></style><?php
-		}
-	}
-
-
-	/**
 	 * Generate content for custom tabs.
 	 *
-	 * @param string $tab_id  Tab ID.
+	 * @param string $tab_id Tab key.
 	 * @param int    $form_id Form ID.
 	 *
 	 * @return string
 	 */
-	public function um_custom_tab_form( $tab_id, $form_id = 0 ) {
+	public function display_embeded_form( $tab_id, $form_id = 0 ) {
 		if ( empty( $form_id ) ) {
 			return '';
 		}
+		$tab     = $this->tabs[ $tab_id ];
 		$args    = UM()->query()->post_data( $form_id );
 		$user_id = get_current_user_id();
 
@@ -226,19 +256,29 @@ class Account {
 		// set profile settings.
 		$post = get_post( absint( UM()->config()->permalinks[ 'user' ] ) );
 		UM()->fields()->set_id   = $form_id;
-		UM()->fields()->set_mode = get_post_meta( $form_id, '_um_mode', true );
+		UM()->fields()->set_mode = 'profile';
 		UM()->fields()->editing  = true;
 		UM()->fields()->viewing  = false;
+		$classes = UM()->shortcodes()->get_class( 'profile' );
 
 		ob_start();
-		do_action( 'um_before_profile_fields', $args );
-		do_action( 'um_main_profile_fields', $args );
-		do_action( 'um_after_form_fields', $args );
-
 		?>
-		<input type="hidden" name="is_signup" value="1">
-		<input type="hidden" name="profile_nonce" value="<?php echo esc_attr( wp_create_nonce( 'um-profile-nonce' . $user_id ) ); ?>">
-		<input type="hidden" name="user_id" value="<?php echo esc_attr( $user_id ); ?>">
+		<div class="um <?php echo esc_attr( $classes ); ?> um-<?php echo absint( $form_id ); ?> um-role-<?php echo esc_attr( um_user( 'role' ) ); ?> ">
+			<?php
+			if ( $tab->_um_form_header && false === $this->is_profile_header_shown ) {
+				$this->is_profile_header_shown = true;
+				do_action( 'um_profile_header_cover_area', $args );
+				do_action( 'um_profile_header', $args );
+			}
+			do_action( 'um_before_profile_fields', $args );
+			do_action( 'um_main_profile_fields', $args );
+			do_action( 'um_after_form_fields', $args );
+
+			?>
+			<input type="hidden" name="is_signup" value="1">
+			<input type="hidden" name="profile_nonce" value="<?php echo esc_attr( wp_create_nonce( 'um-profile-nonce' . $user_id ) ); ?>">
+			<input type="hidden" name="user_id" value="<?php echo esc_attr( $user_id ); ?>">
+		</div>
 		<?php
 
 		$contents = ob_get_clean();
@@ -253,6 +293,55 @@ class Account {
 		UM()->form()->form_suffix = $form_suffix;
 
 		return $contents;
+	}
+
+
+	/**
+	 * Enqueue scripts.
+	 */
+	public function enqueue_script() {
+		if ( um_is_core_page( 'account' ) ) {
+			wp_enqueue_script(
+				'um-account-tabs',
+				um_account_tabs_url . '/assets/js/um-account-tabs.js',
+				array( 'jquery' ),
+				um_account_tabs_version,
+				true
+			);
+		}
+	}
+
+
+	/**
+	 * Print styles to customize account tabs.
+	 */
+	public function print_styles() {
+		$css = '';
+		foreach ( $this->get_tabs() as $tab_id => $tab ) {
+			if ( ! empty( $tab->_color ) ) {
+				$css .= '.um-account .um-form .um-account-side li a.um-account-link[data-tab="' . esc_attr( $tab_id ) . '"]'
+					. '{ background-color: ' . esc_attr( $tab->_color ) . '; }' . "\n";
+				$css .= '.um-account .um-form .um-account-side li a.um-account-link[data-tab="' . esc_attr( $tab_id ) . '"].current:not(:hover)'
+					. '{ box-shadow: inset 0px 0px 2em 2em rgba(255,255,255,0.1); }' . "\n";
+				$css .= '.um-account .um-form .um-account-side li a.um-account-link[data-tab="' . esc_attr( $tab_id ) . '"]:hover:not(.current)'
+					. '{ box-shadow: inset 0px 0px 2em 2em rgba(0,0,0,0.1); }' . "\n";
+			}
+			if ( ! empty( $tab->_color_text ) ) {
+				$css .= '.um-account .um-form .um-account-side li a.um-account-link[data-tab="' . esc_attr( $tab_id ) . '"],'
+					. '.um-account .um-form .um-account-side li a.um-account-link[data-tab="' . esc_attr( $tab_id ) . '"] span.um-account-icon,'
+					. '.um-account .um-form .um-account-side li a.um-account-link[data-tab="' . esc_attr( $tab_id ) . '"] span.um-account-title'
+					. '{ color: ' . esc_attr( $tab->_color_text ) . ' !important; }' . "\n";
+			}
+		}
+		if ( $this->is_profile_header_shown ) {
+			$css .= '.um-account-tab .um-cover'
+				. '{margin-top: 15px;}' . "\n";
+			$css .= '.um-account-tab .um-profile-headericon'
+				. '{display: none;}' . "\n";
+		}
+		if ( $css ) {
+			?><style type="text/css"><?php echo "\n". trim( $css ) . "\n"; ?></style><?php
+		}
 	}
 
 

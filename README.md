@@ -3,9 +3,11 @@
 Adds custom tabs to the Account page menu.
 
 ## Key features
-- Ability to create custom account tabs with custom title, content and icon.
+- Ability to create custom account tabs.
+- Ability to embed the profile form fields into the custom account tab.
+- Ability to embed the profile form header with cover and profile photo uploaders into the custom account tab.
 - Ability to restrict custom account tabs for specific user roles.
-- Ability to embed a profile form into the custom account tab.
+- Ability to customise the custom account tab colour, icon and position.
 
 ## Installation
 
@@ -21,7 +23,7 @@ Once the plugin is cloned, enter your site admin dashboard and go to _wp-admin >
 
 ### How to install from ZIP archive
 
-You can install this plugin from the [ZIP file](https://drive.google.com/file/d/1N1j06ZPlyvOkOZWuxvp8XLLhjZPgCnfk/view?usp=sharing) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
+You can install this plugin from the [ZIP file](https://drive.google.com/file/d/1tEXzVAZUmk4L_kPyoGRa8cOuf7612blh/view?usp=sharing) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
 
 ## How to use
 
@@ -29,35 +31,61 @@ You can install this plugin from the [ZIP file](https://drive.google.com/file/d/
 
 Go to *wp-admin > Ultimate Member > Account Tabs* and click the **Add New** button to create a draft.
 
-Image - How to create a new account tab.
 ![WP, Ultimate Member, Account Tabs](https://github.com/umdevelopera/um-account-tabs/assets/113178913/798283da-c8c7-489b-8cc6-19e1488e67fd)
 
 Configure the account tab settings:
 
 1) **Title** - The title of the tab (menu item text).
 
-2) **Content** - The content of the tab. Optional. You can use text, HTML, and shortcodes. Shortcodes that display a form are not allowed!
+2) **Content** - The content of the tab. You can add text, Gutenberg blocks, shortcodes. **Note:** forms are not allowed!
 
-3) Pre-defined content:
-- **Embed a profile form** - Select a form if you wish to embed a profile form into the tab.
+3) Embed content:
+- **Embed a profile form** - Use this tool if you need to embed profile form fields into the tab.
+- **Display the profile header** - Use this tool if you need to embed cover and profile photo uploaders.
 
-4) Display Settings:
+4) Restrictions:
 - **Show on these roles accounts** - Select user roles, in whose accounts you want to display the tab. The tab is displayed in all accounts if empty.
 
 5) Appearance:
-- **Background color** - Set the color of the tab menu item. Default `#E0E0E0`
-- **Icon** - Set the icon of the tab menu item. Default `+`
-- **Position** - Set the position of the tab item in the menu. A number from 1 to 999. Default is `800`. The value for each tab must be unique!
+- **Icon** - Set the icon of the tab menu item. Default `+`.
+- **Background color** - Set the background color of the tab menu item. Default `#E0E0E0`.
+- **Text color** - Set the text and icon color of the tab menu item. Default `#404040`.
+- **Tab position** - Set the position of the tab item in the menu. A number from 1 to 999. Default is `800`.
+- **Tab slug** - Set the slug of the tab. This is a part of the account page URL specific for the tab. Default post slug.
 
-Image - Custom account tab settings.
-![WP, Ultimate Member, Account Tabs, Add (Edit) Tab](https://github.com/umdevelopera/um-account-tabs/assets/113178913/575d82bf-06b9-4cc9-979a-d14c045ef970)
+### How to use placeholders and shortcodes
 
-### How to embed a profile form
+The tab content supports placeholders: {display_name}, {first_name}, {last_name}, {username}, {gender}, {email}, {admin_email}, {site_name}, {site_url}, {user_account_link}, {user_profile_link}, {user_avatar}, {usermeta:meta_key}. Just add a placeholder into the text in the Content section.
 
-Select the profile form you want to embed to the tab in the dropdown **Embed a profile form**.
+The Content section supports shortcodes and other Gutenberg blocks.
 
-Image - An example of the embed profile form.
-![example - custom tab with profile form in account](https://github.com/umdevelopera/um-account-tabs/assets/113178913/f2cd04f5-1b72-470d-825d-628e1ca47d65)
+**Example 1:** Placeholders and shortcode.
+![e1a+](https://github.com/user-attachments/assets/d87f4718-bc36-4b38-b6b6-9cca7d720901)
+![e1f](https://github.com/user-attachments/assets/623ab70d-273d-438b-9e9a-a7af7f6032de)
+
+### How to embed the profile form fields
+
+Account tabs can not contain forms.
+Select the profile form you need in the **Embed a profile form** dropdown to embed its fields into the tab.
+
+**Example 2:** Embeded profile form fields
+![e2a+](https://github.com/user-attachments/assets/46b7b5eb-7d80-4188-b543-ab490cf1e080)
+![e2f](https://github.com/user-attachments/assets/70edcdc0-3f0c-4f0b-812f-3bfc001a4e50)
+
+### How to embed cover and profile photo uploaders
+
+Select the profile form you need in the **Embed a profile form** dropdown and turn on the **Display the profile header** setting.
+
+**Example 3:** Embeded cover and profile photo uploaders.
+![e3a+](https://github.com/user-attachments/assets/4bea61f6-1d26-4be1-bcd3-cb933a53329e)
+![e3f](https://github.com/user-attachments/assets/4f04692b-2dae-448f-9999-52297df0c841)
+
+### How to translate
+
+It is possible to translate custom account tabs if you use the [Polylang](https://wordpress.org/plugins/polylang/) multilingual plugin.
+Install the [Ultimate Member - Polylang](https://github.com/umdevelopera/um-polylang) extension. Go to *wp-admin > Ultimate Member > Account Tabs* and click the **Create Tabs** button in the notice to duplicate tabs for all languages. Once the tabs are duplicated, you can manually edit the tab titles.
+
+![WP, Ultimate Member, Account Tabs (Create Tabs)](https://github.com/user-attachments/assets/ed82a077-7727-424e-848e-ab9593013a6d)
 
 ## Support
 
