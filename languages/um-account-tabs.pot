@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ultimate Member - Account tabs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-25 19:47+0000\n"
+"POT-Creation-Date: 2024-11-10 18:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: umdevelopera <umdevelopera@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Loco-Version: 2.6.3; wp-6.1\n"
 "X-Domain: um-account-tabs"
 
-#: includes/admin/templates/account-tab/appearance.php:41
+#: includes/admin/templates/account-tab/appearance.php:52
 msgid ""
 "A number from 1 to 999. Default is 800. The value for each tab must be "
 "unique."
@@ -25,6 +25,12 @@ msgstr ""
 #: includes/admin/class-admin.php:51 includes/admin/class-admin.php:52
 #: includes/core/class-common.php:37 includes/core/class-common.php:49
 msgid "Account Tabs"
+msgstr ""
+
+#: includes/admin/templates/account-tab/embed.php:49
+msgid ""
+"Account tabs can not contain forms. Use this tool if you need to embed "
+"profile form fields into the tab."
 msgstr ""
 
 #: includes/core/class-common.php:40
@@ -47,28 +53,40 @@ msgstr ""
 msgid "Appearance"
 msgstr ""
 
-#: includes/admin/templates/account-tab/appearance.php:27
+#: includes/admin/templates/account-tab/appearance.php:38
 msgid "Background color"
+msgstr ""
+
+#: includes/core/class-common.php:51
+msgid "Custom tabs in the Account page menu"
 msgstr ""
 
 #: includes/admin/class-admin.php:93
 msgid "Date"
 msgstr ""
 
-#: includes/admin/class-admin.php:212
-msgid "Display Settings"
+#: includes/admin/templates/account-tab/embed.php:56
+msgid "Display the profile header"
 msgstr ""
 
 #: includes/core/class-common.php:42
 msgid "Edit Tab"
 msgstr ""
 
-#: includes/admin/templates/account-tab/um-form.php:53
+#: includes/admin/templates/account-tab/embed.php:48
 msgid "Embed a profile form"
+msgstr ""
+
+#: includes/admin/class-admin.php:203
+msgid "Embed content"
 msgstr ""
 
 #: includes/admin/class-admin.php:91
 msgid "Embed form"
+msgstr ""
+
+#: includes/admin/templates/account-tab/embed.php:87
+msgid "here"
 msgstr ""
 
 #. Author URI of the plugin
@@ -79,7 +97,7 @@ msgstr ""
 msgid "https://github.com/umdevelopera/um-account-tabs"
 msgstr ""
 
-#: includes/admin/templates/account-tab/appearance.php:33
+#: includes/admin/templates/account-tab/appearance.php:32
 msgid "Icon"
 msgstr ""
 
@@ -87,12 +105,11 @@ msgstr ""
 msgid "New Tab"
 msgstr ""
 
-#: includes/admin/templates/account-tab/um-form.php:19
+#: includes/admin/templates/account-tab/embed.php:19
 msgid "No form"
 msgstr ""
 
 #: includes/admin/class-admin.php:90
-#: includes/admin/templates/account-tab/appearance.php:39
 msgid "Position"
 msgstr ""
 
@@ -106,8 +123,15 @@ msgctxt "Post Type Singular Name"
 msgid "Account tab"
 msgstr ""
 
-#: includes/admin/class-admin.php:203
-msgid "Pre-defined content"
+#: includes/admin/templates/account-tab/embed.php:57
+msgid ""
+"Profile header is a place where you can upload the cover photo and the "
+"profile photo. You can turn on or off profile header elements using settings "
+"in the \"Customize this form\" section in the profile form builder."
+msgstr ""
+
+#: includes/admin/class-admin.php:212
+msgid "Restrictions"
 msgstr ""
 
 #: includes/admin/class-admin.php:92
@@ -118,8 +142,20 @@ msgstr ""
 msgid "Show on these roles accounts"
 msgstr ""
 
+#: includes/admin/templates/account-tab/appearance.php:50
+msgid "Tab position"
+msgstr ""
+
+#: includes/admin/templates/account-tab/appearance.php:57
+msgid "Tab slug"
+msgstr ""
+
+#: includes/admin/templates/account-tab/appearance.php:44
+msgid "Text color"
+msgstr ""
+
 #. %s - plugin name.
-#: um-account-tabs.php:45
+#: um-account-tabs.php:44
 #, php-format
 msgid ""
 "The <strong>%s</strong> extension requires the Ultimate Member plugin to be "
@@ -127,10 +163,20 @@ msgid ""
 "org/plugins/ultimate-member\">here</a>"
 msgstr ""
 
+#: includes/admin/templates/account-tab/embed.php:73
+msgid "The tab content supports placeholders:"
+msgstr ""
+
 #: includes/admin/templates/account-tab/access.php:14
 #: includes/admin/templates/account-tab/appearance.php:14
-#: includes/admin/templates/account-tab/um-form.php:14
+#: includes/admin/templates/account-tab/embed.php:14
 msgid "These settings are obtained from a Account tab in the default language"
+msgstr ""
+
+#: includes/admin/templates/account-tab/appearance.php:59
+msgid ""
+"This is a part of the account page URL specific for this tab. Default post "
+"slug."
 msgstr ""
 
 #. Name of the plugin
@@ -141,7 +187,7 @@ msgstr ""
 msgid "umdevelopera"
 msgstr ""
 
-#: includes/core/class-account.php:88
+#: includes/core/class-account.php:151
 msgid "Update"
 msgstr ""
 
@@ -161,4 +207,8 @@ msgstr ""
 msgid ""
 "You can choose the roles in whose accounts this tab should be displayed. The "
 "tab is displayed in all accounts if the setting is empty."
+msgstr ""
+
+#: includes/admin/templates/account-tab/embed.php:87
+msgid "You may get more details about placeholders"
 msgstr ""

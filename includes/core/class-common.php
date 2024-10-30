@@ -48,17 +48,17 @@ class Common {
 		$args = array(
 			'label'               => __( 'Account Tabs', 'um-account-tabs' ),
 			'labels'              => $labels,
+			'description'         => __( 'Custom tabs in the Account page menu', 'um-account-tabs' ),
+			'can_export'          => false,
 			'hierarchical'        => false,
 			'public'              => false,
 			'show_ui'             => true,
 			'show_in_menu'        => false,
 			'show_in_admin_bar'   => false,
 			'show_in_nav_menus'   => false,
-			'can_export'          => false,
-			'has_archive'         => false,
-			'exclude_from_search' => true,
-			'capability_type'     => 'page',
+			'show_in_rest'        => true,
 			'supports'            => array( 'title', 'editor' ),
+			'capability_type'     => 'page',
 		);
 
 		register_post_type( 'um_account_tabs', $args );
