@@ -23,7 +23,7 @@ Once the plugin is cloned, enter your site admin dashboard and go to _wp-admin >
 
 ### How to install from ZIP archive
 
-You can install this plugin from the [ZIP file](https://drive.google.com/file/d/17dW-Cks1HB0W_G8JraSpd_qv0XZ_CRst/view?usp=sharing) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
+You can install this plugin from the [ZIP file](https://drive.google.com/file/d/1tEXzVAZUmk4L_kPyoGRa8cOuf7612blh/view?usp=sharing) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
 
 ## How to use
 
@@ -53,26 +53,32 @@ Configure the account tab settings:
 - **Tab position** - Set the position of the tab item in the menu. A number from 1 to 999. Default is `800`.
 - **Tab slug** - Set the slug of the tab. This is a part of the account page URL specific for the tab. Default post slug.
 
-### How to use placeholders and shortcodes.
+### How to use placeholders and shortcodes
 
 The tab content supports placeholders: {display_name}, {first_name}, {last_name}, {username}, {gender}, {email}, {admin_email}, {site_name}, {site_url}, {user_account_link}, {user_profile_link}, {user_avatar}, {usermeta:meta_key}. Just add a placeholder into the text in the Content section.
 
 The Content section supports shortcodes and other Gutenberg blocks.
 
-Example 1: Placeholders and shortcode.
+**Example 1:** Placeholders and shortcode.
+![e1a+](https://github.com/user-attachments/assets/d87f4718-bc36-4b38-b6b6-9cca7d720901)
+![e1f](https://github.com/user-attachments/assets/623ab70d-273d-438b-9e9a-a7af7f6032de)
 
 ### How to embed the profile form fields
 
 Account tabs can not contain forms.
 Select the profile form you need in the **Embed a profile form** dropdown to embed its fields into the tab.
 
-Example 2: Embeded profile form fields
+**Example 2:** Embeded profile form fields
+![e2a+](https://github.com/user-attachments/assets/46b7b5eb-7d80-4188-b543-ab490cf1e080)
+![e2f](https://github.com/user-attachments/assets/70edcdc0-3f0c-4f0b-812f-3bfc001a4e50)
 
-### How to embed cover and profile photo uploaders.
+### How to embed cover and profile photo uploaders
 
-Select the profile form you need in the **Embed a profile form** dropdown and turn on the "Display the profile header" setting.
+Select the profile form you need in the **Embed a profile form** dropdown and turn on the **Display the profile header** setting.
 
-Example 3: Embeded cover and profile photo uploaders.
+**Example 3:** Embeded cover and profile photo uploaders.
+![e3a+](https://github.com/user-attachments/assets/4bea61f6-1d26-4be1-bcd3-cb933a53329e)
+![e3f](https://github.com/user-attachments/assets/4f04692b-2dae-448f-9999-52297df0c841)
 
 ### How to translate
 
