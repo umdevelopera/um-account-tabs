@@ -37,7 +37,7 @@ Configure the account tab settings:
 
 1) **Title** - The title of the tab (menu item text).
 
-2) **Content** - The content of the tab. Optional. You can use text, HTML, and shortcodes. Shortcodes that display a form are not allowed!
+2) **Content** - The content of the tab. You can add text, Gutenberg blocks, shortcodes. **Note:** forms are not allowed!
 
 3) Embed content:
 - **Embed a profile form** - Use this tool if you need to embed profile form fields into the tab.

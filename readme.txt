@@ -5,9 +5,9 @@ Author URI: https://github.com/umdevelopera
 Plugin URI: https://github.com/umdevelopera/um-account-tabs
 Tags: ultimate member, account, tabs
 Requires at least: 6.5
-Tested up to: 6.6.2
+Tested up to: 6.7
 Requires UM core at least: 2.6.8
-Tested UM core up to: 2.8.9
+Tested UM core up to: 2.9.1
 Stable tag: 1.1.0
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
@@ -52,7 +52,7 @@ Download ZIP file from GitHub or Google Drive. You can find download links here:
 * Bugfixes:
 
 	- Fixed: Tabs position conflict. Now it will auto increment the position value if it exists.
-	- Fixed: The load_textdomain PHP notice.
+	- Fixed: "Load textdomain just in time" issue.
 
 = 1.0.6: September 5, 2024 =
 
