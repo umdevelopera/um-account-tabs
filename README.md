@@ -23,7 +23,7 @@ Once the plugin is cloned, enter your site admin dashboard and go to _wp-admin >
 
 ### How to install from ZIP archive
 
-You can install this plugin from the [ZIP file](https://drive.google.com/file/d/1tEXzVAZUmk4L_kPyoGRa8cOuf7612blh/view?usp=sharing) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
+You can install this plugin from the [ZIP file](https://drive.google.com/file/d/1Xto5-evu5n71seDhQwq_6lHfh9crKvdh/view) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
 
 ## How to use
 
@@ -100,4 +100,6 @@ Ultimate Member documentation: https://docs.ultimatemember.com
 
 Ultimate Member download: https://wordpress.org/plugins/ultimate-member
 
-Articles: [Account Tab](https://docs.ultimatemember.com/article/40-account-tab), [Extend Ultimate Member Account page with custom tabs/content](https://docs.ultimatemember.com/article/65-extend-ultimate-member-account-page-with-custom-tabs-content), [How to display custom fields in Account](https://docs.ultimatemember.com/article/1504-how-to-display-custom-fields-in-account)
+---
+
+[Free extensions for Ultimate Member](https://docs.google.com/document/d/1wp5oLOyuh5OUtI9ogcPy8NL428rZ8PVTu_0R-BuKKp8/edit?usp=sharing)
