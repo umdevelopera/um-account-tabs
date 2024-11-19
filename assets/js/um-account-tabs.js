@@ -6,4 +6,6 @@ jQuery( function() {
 	 */
 	wp.hooks.addAction( 'um_account_active_tab_inited', 'um-account-tabs', um_responsive );
 	wp.hooks.addAction( 'um_after_account_tab_changed', 'um-account-tabs', um_responsive );
+	wp.hooks.addAction( 'um_account_active_tab_inited', 'um-account-tabs', um_init_field_conditions );
+	wp.hooks.addAction( 'um_after_account_tab_changed', 'um-account-tabs', um_init_field_conditions );
 } );

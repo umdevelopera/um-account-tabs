@@ -254,37 +254,39 @@ class Account {
 		$form_suffix = UM()->form()->form_suffix;
 
 		// set profile settings.
-		$post = get_post( absint( UM()->config()->permalinks[ 'user' ] ) );
+		$post                    = get_post( um_get_predefined_page_id( 'user' ) );
 		UM()->fields()->set_id   = $form_id;
 		UM()->fields()->set_mode = 'profile';
 		UM()->fields()->editing  = true;
 		UM()->fields()->viewing  = false;
-		$classes = UM()->shortcodes()->get_class( 'profile' );
 
+		$classes = UM()->shortcodes()->get_class( 'profile' );
 		ob_start();
 		?>
 		<div class="um <?php echo esc_attr( $classes ); ?> um-<?php echo absint( $form_id ); ?> um-role-<?php echo esc_attr( um_user( 'role' ) ); ?> ">
-			<?php
-			if ( $tab->_um_form_header && false === $this->is_profile_header_shown ) {
-				$this->is_profile_header_shown = true;
-				do_action( 'um_profile_header_cover_area', $args );
-				do_action( 'um_profile_header', $args );
-			}
-			do_action( 'um_before_profile_fields', $args );
-			do_action( 'um_main_profile_fields', $args );
-			do_action( 'um_after_form_fields', $args );
+			<div class="um-form" data-mode="profile">
+				<?php
+				if ( $tab->_um_form_header && false === $this->is_profile_header_shown ) {
+					$this->is_profile_header_shown = true;
+					do_action( 'um_profile_header_cover_area', $args );
+					do_action( 'um_profile_header', $args );
+				}
+				do_action( 'um_before_profile_fields', $args );
+				do_action( 'um_main_profile_fields', $args );
+				do_action( 'um_after_form_fields', $args );
 
-			?>
-			<input type="hidden" name="is_signup" value="1">
-			<input type="hidden" name="profile_nonce" value="<?php echo esc_attr( wp_create_nonce( 'um-profile-nonce' . $user_id ) ); ?>">
-			<input type="hidden" name="user_id" value="<?php echo esc_attr( $user_id ); ?>">
+				?>
+				<input type="hidden" name="is_signup" value="1">
+				<input type="hidden" name="profile_nonce" value="<?php echo esc_attr( wp_create_nonce( 'um-profile-nonce' . $user_id ) ); ?>">
+				<input type="hidden" name="user_id" value="<?php echo esc_attr( $user_id ); ?>">
+			</div>
 		</div>
 		<?php
 
 		$contents = ob_get_clean();
 
 		// restore account settings.
-		$post = $global_post;
+		$post                     = $global_post;
 		UM()->fields()->set_id    = $set_id;
 		UM()->fields()->set_mode  = $set_mode;
 		UM()->fields()->editing   = $editing;
