@@ -12,7 +12,7 @@
  * Requires at least: 6.5
  * Requires PHP: 7.4
  * UM version: 2.9.1
- * Version: 1.1.1
+ * Version: 1.1.2
  *
  * @package um_ext\um_account_tabs
  */
