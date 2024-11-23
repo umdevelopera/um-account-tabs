@@ -11,7 +11,7 @@ Requires at least: 6.5
 Tested up to: 6.7
 Requires UM core at least: 2.6.8
 Tested UM core up to: 2.9.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 
 == Description ==
 
@@ -40,12 +40,20 @@ Download ZIP file from GitHub or Google Drive. You can find download links here:
 
 == Changelog ==
 
+= 1.1.2: November 23, 2024 =
+
+* Bugfixes:
+
+	- Fixed: Radio fields in embedded forms.
+
 = 1.1.1: November 19, 2024 =
 
 * Bugfixes:
 
 	- Fixed: Compatibility with the Ultimate Member core 2.9.1.
-	- Fixed: Conditional fields.
+	- Fixed: Conditional fields in embedded forms.
+
+= 1.1.0: November 10, 2024 =
 
 * Enhancements:
 
