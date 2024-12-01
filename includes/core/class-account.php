@@ -27,12 +27,18 @@ class Account {
 	protected $tabs = null;
 
 	/**
-	 * Used to prevent displaying the profile header twice.
+	 * True if the embedded profile header has been shown.
 	 *
 	 * @var bool
 	 */
 	private $is_profile_header_shown = false;
 
+	/**
+	 * True if the embedded profile form has been shown.
+	 *
+	 * @var bool
+	 */
+	private $is_profile_form_shown = false;
 
 	/**
 	 * Account constructor.
@@ -136,11 +142,11 @@ class Account {
 			}
 
 			$position = absint( $tab->_position );
-			$tab_slug = $tab->_tab_slug ? sanitize_title( $tab->_tab_slug ) : $tab->post_name;
-
 			while ( array_key_exists( $position, $tabs ) ) {
 				$position++;
 			}
+			$submit_title = $tab->_um_form_button ? wp_strip_all_tags( $tab->_um_form_button ) : __( 'Update', 'um-account-tabs' );
+			$tab_slug     = $tab->_tab_slug ? sanitize_title( $tab->_tab_slug ) : $tab->post_name;
 
 			// Add tab to menu.
 			$tabs[ $position ][ $tab_slug ] = array(
@@ -149,7 +155,7 @@ class Account {
 				'color'        => $tab->_color,
 				'custom'       => true,
 				'show_button'  => ! empty( $tab->_um_form ),
-				'submit_title' => __( 'Update', 'um-account-tabs' ),
+				'submit_title' => $submit_title,
 			);
 
 			// Show tab content.
@@ -239,6 +245,8 @@ class Account {
 		if ( empty( $form_id ) ) {
 			return '';
 		}
+		$this->is_profile_form_shown = true;
+
 		$tab     = $this->tabs[ $tab_id ];
 		$args    = UM()->query()->post_data( $form_id );
 		$user_id = get_current_user_id();
@@ -341,8 +349,12 @@ class Account {
 			$css .= '.um-account-tab .um-profile-headericon'
 				. '{display: none;}' . "\n";
 		}
+		if ( $this->is_profile_form_shown ) {
+			$css .= '.um-account-tab .um.um-profile'
+				. '{padding-bottom: 0;}' . "\n";
+		}
 		if ( $css ) {
-			?><style type="text/css"><?php echo "\n". trim( $css ) . "\n"; ?></style><?php
+			?><style type="text/css"><?php echo "\n" . trim( $css ) . "\n"; ?></style><?php
 		}
 	}
 
@@ -360,8 +372,12 @@ class Account {
 	 */
 	public function update_profile_redirect( $url, $user_id, $args ) {
 		if ( is_array( $args ) && isset( $args['_um_account'] ) && isset( $args['_um_account_tab'] ) ) {
-			$current_url = UM()->permalinks()->get_current_url();
-			$url         = remove_query_arg( 'um_action', $current_url );
+			$url = remove_query_arg( 'um_action', UM()->permalinks()->get_current_url() );
+			if ( empty( UM()->form()->errors ) ) {
+				$url = add_query_arg( 'updated', 'account', $url );
+			} else {
+				$url = add_query_arg( 'err', 'account', $url );
+			}
 		}
 		return $url;
 	}

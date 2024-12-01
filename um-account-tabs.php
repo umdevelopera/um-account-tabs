@@ -12,7 +12,7 @@
  * Requires at least: 6.5
  * Requires PHP: 7.4
  * UM version: 2.9.1
- * Version: 1.1.2
+ * Version: 1.1.3
  *
  * @package um_ext\um_account_tabs
  */
@@ -51,4 +51,4 @@ if ( ! function_exists( 'um_account_tabs_check_dependencies' ) ) {
 		}
 	}
 }
-add_action( 'plugins_loaded', 'um_account_tabs_check_dependencies', 2 );
+add_action( 'init', 'um_account_tabs_check_dependencies', 10 );

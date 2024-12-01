@@ -29,14 +29,12 @@ if ( ! class_exists( 'um_ext\um_account_tabs\admin\Admin' ) ) {
 			// Menu.
 			add_action( 'admin_menu', array( &$this, 'create_admin_submenu' ), 1001 );
 
-			// Columns.
-			add_filter( 'manage_edit-um_account_tabs_columns', array( $this, 'columns_th' ) );
-			add_action( 'manage_um_account_tabs_posts_custom_column', array( $this, 'columns_td' ), 10, 2 );
+			// Edit screen.
+			add_action( 'load-edit.php', array( $this, 'load_edit' ) );
 
-			// Metaboxes.
-			add_action( 'load-post.php', array( &$this, 'init_metaboxes' ), 9 );
-			add_action( 'load-post-new.php', array( &$this, 'init_metaboxes' ), 9 );
-			add_filter( 'wp_insert_post_data', array( &$this, 'filter_post_data' ), 10, 4 );
+			// Post screen.
+			add_action( 'load-post.php', array( $this, 'load_post' ), 9 );
+			add_action( 'load-post-new.php', array( $this, 'load_post' ), 9 );
 
 			add_filter( 'um_is_ultimatememeber_admin_screen', array( &$this, 'is_um_screen' ), 10, 1 );
 		}
@@ -57,87 +55,6 @@ if ( ! class_exists( 'um_ext\um_account_tabs\admin\Admin' ) ) {
 
 
 		/**
-		 * Adds custom columns to the table "Account tabs".
-		 *
-		 * @param array $columns  An array of columns.
-		 *
-		 * @return array
-		 */
-		public function columns_th( $columns ) {
-			if ( isset( $columns['date'] ) ) {
-				unset( $columns['date'] );
-			}
-
-			$columns['position'] = __( 'Position', 'um-account-tabs' );
-			$columns['form']     = __( 'Embed form', 'um-account-tabs' );
-			$columns['roles']    = __( 'Roles restriction', 'um-account-tabs' );
-			$columns['date']     = __( 'Date', 'um-account-tabs' );
-
-			return $columns;
-		}
-
-
-		/**
-		 * Displays custom columns in the table "Account tabs"
-		 *
-		 * @param  string $column_name  A column slug.
-		 * @param  int    $id           Post ID.
-		 */
-		public function columns_td( $column_name, $id ) {
-			switch ( $column_name ) {
-
-				case 'position':
-					$position = get_post_meta( $id, '_position', true );
-					if ( $position ) {
-						echo absint( $position );
-					}
-					break;
-
-				case 'form':
-					$form_id = get_post_meta( $id, '_um_form', true );
-					if ( $form_id ) {
-						echo get_the_title( $form_id ) . ' (' . $form_id . ')';
-					}
-					break;
-
-				case 'roles':
-					$roles = get_post_meta( $id, '_can_have_this_tab_roles', true );
-					if ( $roles ) {
-						$all_roles = wp_roles()->role_names;
-						$roles     = array_intersect_key( $all_roles, array_flip( $roles ) );
-						echo implode( ', ', $roles );
-					}
-					break;
-			}
-		}
-
-
-		/**
-		 * Validates the account tab name and slug to be not empty.
-		 *
-		 * @param  array $data                An array of slashed, sanitized, and processed post data.
-		 * @param  array $postarr             An array of sanitized (and slashed) but otherwise unmodified post data.
-		 * @param  array $unsanitized_postarr An array of slashed yet *unsanitized* and unprocessed post data.
-		 * @param  bool  $update              Whether this is an existing post being updated.
-		 * @return array
-		 */
-		public function filter_post_data( $data, $postarr, $unsanitized_postarr, $update ) {
-
-			if ( isset( $data['post_type'] ) && 'um_account_tabs' === $data['post_type'] && isset( $unsanitized_postarr['post_status'] ) && 'auto-draft' !== $unsanitized_postarr['post_status'] ) {
-				if ( empty( $data['post_title'] ) ) {
-					$data['post_title'] = 'Account Tab';
-				}
-				if ( empty( $data['post_name'] ) ) {
-					$tab_id            = empty( $unsanitized_postarr['ID'] ) ? time() : $unsanitized_postarr['ID'];
-					$data['post_name'] = 'account-tab-' . $tab_id;
-				}
-			}
-
-			return $data;
-		}
-
-
-		/**
 		 * Extends UM admin pages for enqueue scripts.
 		 *
 		 * @param  bool $is_um Whether this screen is a part of the Ultimate Member.
@@ -154,103 +71,30 @@ if ( ! class_exists( 'um_ext\um_account_tabs\admin\Admin' ) ) {
 
 
 		/**
-		 * Add metaboxes to Add/Edit Account Tab screen.
-		 */
-		public function init_metaboxes() {
-			global $current_screen;
-			if ( isset( $current_screen ) && 'um_account_tabs' === $current_screen->id ) {
-				add_action( 'add_meta_boxes', array( &$this, 'add_metaboxes' ), 1 );
-				add_action( 'save_post_um_account_tabs', array( &$this, 'save_metaboxes_data' ), 10, 3 );
-			}
-		}
-
-
-		/**
-		 * Add metaboxes.
-		 */
-		public function add_metaboxes() {
-			// don't show metaboxes for translations.
-			if ( UM()->external_integrations()->is_wpml_active() ) {
-				global $post, $sitepress;
-				$tab_id = $sitepress->get_object_id( $post->ID, 'um_account_tabs', true, $sitepress->get_default_language() );
-				if ( $tab_id && $tab_id !== $post->ID ) {
-					return;
-				}
-			}
-
-			add_meta_box(
-				'um-admin-custom-account-tab/embed{' . um_account_tabs_path . '}',
-				__( 'Embed content', 'um-account-tabs' ),
-				array( UM()->metabox(), 'load_metabox_custom' ),
-				'um_account_tabs',
-				'normal',
-				'default'
-			);
-
-			add_meta_box(
-				'um-admin-custom-account-tab/access{' . um_account_tabs_path . '}',
-				__( 'Restrictions', 'um-account-tabs' ),
-				array( UM()->metabox(), 'load_metabox_custom' ),
-				'um_account_tabs',
-				'side',
-				'default'
-			);
-
-			add_meta_box(
-				'um-admin-custom-account-tab/appearance{' . um_account_tabs_path . '}',
-				__( 'Appearance', 'um-account-tabs' ),
-				array( UM()->metabox(), 'load_metabox_custom' ),
-				'um_account_tabs',
-				'side',
-				'default'
-			);
-		}
-
-
-		/**
-		 * Save settings in metaboxes.
+		 * Customize the "Account tabs" table.
 		 *
-		 * @param int      $post_id Post ID.
-		 * @param \WP_Post $post    Post object.
-		 * @param bool     $update  Whether this is an existing post being updated.
+		 * @return um_ext\um_account_tabs\admin\Load_Edit()
 		 */
-		public function save_metaboxes_data( $post_id, $post, $update ) {
-			if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-				return;
+		public function load_edit() {
+			if ( empty( UM()->classes['um_account_load_edit'] ) ) {
+				require_once um_account_tabs_path . 'includes/admin/class-load-edit.php';
+				UM()->classes['um_account_load_edit'] = new Load_Edit();
 			}
-			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-				return;
+			return UM()->classes['um_account_load_edit'];
+		}
+
+
+		/**
+		 * Customize the "Account tab" post screen.
+		 *
+		 * @return um_ext\um_account_tabs\admin\Load_Post()
+		 */
+		public function load_post() {
+			if ( empty( UM()->classes['um_account_load_post'] ) ) {
+				require_once um_account_tabs_path . 'includes/admin/class-load-post.php';
+				UM()->classes['um_account_load_post'] = new Load_Post();
 			}
-			if ( empty( $_POST ) || empty( $_POST['um_account_tab'] ) ) {
-				return;
-			}
-			check_admin_referer( 'update-post_' . $post_id );
-
-			$input = map_deep( wp_unslash( $_POST['um_account_tab'] ), 'sanitize_text_field' );
-
-			$form = isset( $input['_um_form'] ) ? absint( $input['_um_form'] ) : '';
-			update_post_meta( $post_id, '_um_form', $form );
-
-			$form_header = isset( $input['_um_form_header'] ) ? absint( $input['_um_form_header'] ) : 0;
-			update_post_meta( $post_id, '_um_form_header', $form_header );
-
-			$roles = isset( $input['_can_have_this_tab_roles'] ) && is_array( $input['_can_have_this_tab_roles'] ) ? $input['_can_have_this_tab_roles'] : '';
-			update_post_meta( $post_id, '_can_have_this_tab_roles', $roles );
-
-			$color = isset( $input['_color'] ) ? sanitize_hex_color( $input['_color'] ) : '';
-			update_post_meta( $post_id, '_color', $color );
-
-			$color_text = isset( $input['_color_text'] ) ? sanitize_hex_color( $input['_color_text'] ) : '';
-			update_post_meta( $post_id, '_color_text', $color_text );
-
-			$icon = isset( $input['_icon'] ) ? sanitize_text_field( $input['_icon'] ) : '';
-			update_post_meta( $post_id, '_icon', $icon );
-
-			$position = isset( $input['_position'] ) ? absint( $input['_position'] ) : '';
-			update_post_meta( $post_id, '_position', $position );
-
-			$tab_slug = isset( $input['_tab_slug'] ) ? sanitize_title( $input['_tab_slug'] ) : '';
-			update_post_meta( $post_id, '_tab_slug', $tab_slug );
+			return UM()->classes['um_account_load_post'];
 		}
 	}
 }
