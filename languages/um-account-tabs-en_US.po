@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Ultimate Member - Account tabs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-11 20:06+0000\n"
-"PO-Revision-Date: 2024-11-10 18:24+0000\n"
+"PO-Revision-Date: 2024-12-01 21:13+0000\n"
 "Last-Translator: umdevelopera\n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -21,7 +21,7 @@ msgid ""
 "unique."
 msgstr ""
 
-#: includes/admin/class-admin.php:51 includes/admin/class-admin.php:52
+#: includes/admin/class-admin.php:49 includes/admin/class-admin.php:50
 #: includes/core/class-common.php:37 includes/core/class-common.php:49
 msgid "Account Tabs"
 msgstr ""
@@ -48,7 +48,7 @@ msgstr ""
 msgid "All Tabs"
 msgstr ""
 
-#: includes/admin/class-admin.php:221
+#: includes/admin/class-load-post.php:71
 msgid "Appearance"
 msgstr ""
 
@@ -60,7 +60,7 @@ msgstr ""
 msgid "Custom tabs in the Account page menu"
 msgstr ""
 
-#: includes/admin/class-admin.php:93
+#: includes/admin/class-load-edit.php:49
 msgid "Date"
 msgstr ""
 
@@ -76,15 +76,15 @@ msgstr ""
 msgid "Embed a profile form"
 msgstr ""
 
-#: includes/admin/class-admin.php:203
+#: includes/admin/class-load-post.php:53
 msgid "Embed content"
 msgstr ""
 
-#: includes/admin/class-admin.php:91
+#: includes/admin/class-load-edit.php:47
 msgid "Embed form"
 msgstr ""
 
-#: includes/admin/templates/account-tab/embed.php:87
+#: includes/admin/templates/account-tab/embed.php:95
 msgid "here"
 msgstr ""
 
@@ -108,7 +108,7 @@ msgstr ""
 msgid "No form"
 msgstr ""
 
-#: includes/admin/class-admin.php:90
+#: includes/admin/class-load-edit.php:46
 msgid "Position"
 msgstr ""
 
@@ -129,16 +129,20 @@ msgid ""
 "in the \"Customize this form\" section in the profile form builder."
 msgstr ""
 
-#: includes/admin/class-admin.php:212
+#: includes/admin/class-load-post.php:62
 msgid "Restrictions"
 msgstr ""
 
-#: includes/admin/class-admin.php:92
+#: includes/admin/class-load-edit.php:48
 msgid "Roles restriction"
 msgstr ""
 
 #: includes/admin/templates/account-tab/access.php:25
 msgid "Show on these roles accounts"
+msgstr ""
+
+#: includes/admin/templates/account-tab/embed.php:64
+msgid "Submit button text"
 msgstr ""
 
 #: includes/admin/templates/account-tab/appearance.php:50
@@ -154,7 +158,7 @@ msgid "Text color"
 msgstr ""
 
 #. %s - plugin name.
-#: um-account-tabs.php:44
+#: um-account-tabs.php:45
 #, php-format
 msgid ""
 "The <strong>%s</strong> extension requires the Ultimate Member plugin to be "
@@ -162,7 +166,7 @@ msgid ""
 "org/plugins/ultimate-member\">here</a>"
 msgstr ""
 
-#: includes/admin/templates/account-tab/embed.php:73
+#: includes/admin/templates/account-tab/embed.php:81
 msgid "The tab content supports placeholders:"
 msgstr ""
 
@@ -186,7 +190,9 @@ msgstr ""
 msgid "umdevelopera"
 msgstr ""
 
-#: includes/core/class-account.php:151
+#: includes/admin/class-load-post.php:120
+#: includes/admin/class-load-post.php:177 includes/core/class-account.php:148
+#: includes/admin/templates/account-tab/embed.php:65
 msgid "Update"
 msgstr ""
 
@@ -208,6 +214,6 @@ msgid ""
 "tab is displayed in all accounts if the setting is empty."
 msgstr ""
 
-#: includes/admin/templates/account-tab/embed.php:87
+#: includes/admin/templates/account-tab/embed.php:95
 msgid "You may get more details about placeholders"
 msgstr ""

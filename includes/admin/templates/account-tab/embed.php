@@ -58,6 +58,14 @@ $fields = array(
 		'conditional' => array( '_um_form', '!=', '' ),
 		'value'       => get_post_meta( $tab_id, '_um_form_header', true ),
 	),
+	array(
+		'id'          => '_um_form_button',
+		'type'        => 'text',
+		'label'       => __( 'Submit button text', 'um-account-tabs' ),
+		'placeholder' => __( 'Update', 'um-account-tabs' ),
+		'conditional' => array( '_um_form', '!=', '' ),
+		'value'       => get_post_meta( $tab_id, '_um_form_button', true ),
+	),
 );
 
 UM()->admin_forms(
