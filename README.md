@@ -42,6 +42,8 @@ Configure the account tab settings:
 3) Embed content:
 - **Embed a profile form** - Use this tool if you need to embed profile form fields into the tab.
 - **Display the profile header** - Use this tool if you need to embed cover and profile photo uploaders.
+- **Display the profile fields** - Use this to display profile form fields under the profile header.
+- **Submit button text** - Allows you to change the button text. "Update" by default.
 
 4) Restrictions:
 - **Show on these roles accounts** - Select user roles, in whose accounts you want to display the tab. The tab is displayed in all accounts if empty.
@@ -53,13 +55,16 @@ Configure the account tab settings:
 - **Tab position** - Set the position of the tab item in the menu. A number from 1 to 999. Default is `800`.
 - **Tab slug** - Set the slug of the tab. This is a part of the account page URL specific for the tab. Default post slug.
 
-### How to use placeholders and shortcodes
+### How to use placeholders, shortcodes and blocks
 
-The tab content supports placeholders: {display_name}, {first_name}, {last_name}, {username}, {gender}, {email}, {admin_email}, {site_name}, {site_url}, {user_account_link}, {user_profile_link}, {user_avatar}, {usermeta:meta_key}. Just add a placeholder into the text in the Content section.
+The tab content supports placeholders: {user_id}, {user_role}, {user_avatar}, {usermeta:_meta_key_}, {display_name}, {first_name}, {last_name}, {username}, {email}, {admin_email}, {site_name}, {site_url}, {user_account_link}, {user_profile_link}.
+Just add a placeholder into the text in the Content section.
+The **{user_id}** placeholder may be helpful for shortcodes that require the `user_id` attribute.
+The **{usermeta:_meta_key_}** placeholder may be helpful to display a custom field value.
 
-The Content section supports shortcodes and other Gutenberg blocks.
+The Content section supports shortcodes and Gutenberg blocks.
 
-**Example 1:** Placeholders and shortcode.
+**Example 1:** Placeholders and shortcodes.
 ![e1a+](https://github.com/user-attachments/assets/d87f4718-bc36-4b38-b6b6-9cca7d720901)
 ![e1f](https://github.com/user-attachments/assets/623ab70d-273d-438b-9e9a-a7af7f6032de)
 
@@ -92,14 +97,14 @@ Install the [Ultimate Member - Polylang](https://github.com/umdevelopera/um-poly
 This is a free extension created for the community. The Ultimate Member team does not provide support for this extension.
 Open new [issue](https://github.com/umdevelopera/um-account-tabs/issues) if you are facing a problem or have a suggestion.
 
-### Related links
+**Please give a star if you think this extension is useful. I wish to know how many people use it. Thanks.**
 
-Ultimate Member home page: https://ultimatemember.com
+## Useful links
 
-Ultimate Member documentation: https://docs.ultimatemember.com
+[Ultimate Member documentation](https://docs.ultimatemember.com)
 
-Ultimate Member download: https://wordpress.org/plugins/ultimate-member
-
----
+[Ultimate Member core plugin info and download](https://wordpress.org/plugins/ultimate-member)
 
 [Free extensions for Ultimate Member](https://docs.google.com/document/d/1wp5oLOyuh5OUtI9ogcPy8NL428rZ8PVTu_0R-BuKKp8/edit?usp=sharing)
+
+[Code snippets for Ultimate Member](https://docs.google.com/document/d/1_bikh4JYlSjjQa0bX1HDGznpLtI0ur_Ma3XQfld2CKk/edit?usp=sharing)

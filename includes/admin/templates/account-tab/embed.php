@@ -59,6 +59,14 @@ $fields = array(
 		'value'       => get_post_meta( $tab_id, '_um_form_header', true ),
 	),
 	array(
+		'id'          => '_um_form_fields',
+		'type'        => 'checkbox',
+		'label'       => __( 'Display the profile fields', 'um-account-tabs' ),
+		'description' => __( 'Display profile form fields under the profile header.', 'um-account-tabs' ),
+		'conditional' => array( '_um_form_header', '!=', '' ),
+		'value'       => get_post_meta( $tab_id, '_um_form_fields', true ),
+	),
+	array(
 		'id'          => '_um_form_button',
 		'type'        => 'text',
 		'label'       => __( 'Submit button text', 'um-account-tabs' ),
@@ -79,18 +87,19 @@ UM()->admin_forms(
 <hr>
 <p>
 	<?php esc_html_e( 'The tab content supports placeholders:', 'um-account-tabs' ); ?>
+	<strong title="<?php esc_attr_e( 'You can use this placeholder in the shortcode attribute.', 'um-account-tabs' ); ?>">{user_id}</strong>,
+	{user_role},
+	{user_avatar},
+	{usermeta:<em title="<?php esc_attr_e( "Insert the field's Meta Key here.", 'um-account-tabs' ); ?>">meta_key</em>},
 	{display_name},
 	{first_name},
 	{last_name},
 	{username},
-	{gender},
 	{email},
 	{admin_email},
 	{site_name},
 	{site_url},
 	{user_account_link},
-	{user_profile_link},
-	{user_avatar},
-	{usermeta:<em>meta_key</em>}.
+	{user_profile_link}.
 	<?php esc_html_e( 'You may get more details about placeholders', 'um-account-tabs' ); ?> <a href="https://docs.ultimatemember.com/article/1340-placeholders-for-email-templates" target="_blank"><?php esc_html_e( 'here', 'um-account-tabs' ); ?></a>.
 </p>
