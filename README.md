@@ -42,6 +42,7 @@ Configure the account tab settings:
 3) Embed content:
 - **Embed a profile form** - Use this tool if you need to embed profile form fields into the tab.
 - **Display the profile header** - Use this tool if you need to embed cover and profile photo uploaders.
+- **Submit button text** - Allows you to change the button text. "Update" by default.
 
 4) Restrictions:
 - **Show on these roles accounts** - Select user roles, in whose accounts you want to display the tab. The tab is displayed in all accounts if empty.
@@ -92,14 +93,16 @@ Install the [Ultimate Member - Polylang](https://github.com/umdevelopera/um-poly
 This is a free extension created for the community. The Ultimate Member team does not provide support for this extension.
 Open new [issue](https://github.com/umdevelopera/um-account-tabs/issues) if you are facing a problem or have a suggestion.
 
-### Related links
-
-Ultimate Member home page: https://ultimatemember.com
-
-Ultimate Member documentation: https://docs.ultimatemember.com
-
-Ultimate Member download: https://wordpress.org/plugins/ultimate-member
+**Please give a star if you think this extension is useful. I wish to know how many people use it. Thanks.**
 
 ---
 
+## Useful links
+
+[Ultimate Member documentation](https://docs.ultimatemember.com)
+
+[Ultimate Member core plugin info and download](https://wordpress.org/plugins/ultimate-member)
+
 [Free extensions for Ultimate Member](https://docs.google.com/document/d/1wp5oLOyuh5OUtI9ogcPy8NL428rZ8PVTu_0R-BuKKp8/edit?usp=sharing)
+
+[Code snippets for Ultimate Member](https://docs.google.com/document/d/1_bikh4JYlSjjQa0bX1HDGznpLtI0ur_Ma3XQfld2CKk/edit?usp=sharing)
