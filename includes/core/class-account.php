@@ -69,6 +69,8 @@ class Account {
 	 * @return array
 	 */
 	public function add_placeholder( $placeholders ) {
+		$placeholders[] = '{user_id}';
+		$placeholders[] = '{user_role}';
 		$placeholders[] = '{admin_email}';
 		$placeholders[] = '{site_url}';
 		$placeholders[] = '{user_profile_link}';
@@ -85,6 +87,8 @@ class Account {
 	 * @return array
 	 */
 	public function add_replace_placeholder( $replace_placeholders ) {
+		$replace_placeholders[] = um_user( 'ID' );
+		$replace_placeholders[] = um_user( 'role' );
 		$replace_placeholders[] = um_admin_email();
 		$replace_placeholders[] = get_bloginfo( 'url' );
 		$replace_placeholders[] = um_user_profile_url();
@@ -275,14 +279,19 @@ class Account {
 			<div class="um-form" data-mode="profile">
 				<?php
 				if ( $tab->_um_form_header && false === $this->is_profile_header_shown ) {
+					// if "Display the profile header" is turned ON.
+
 					$this->is_profile_header_shown = true;
 					do_action( 'um_profile_header_cover_area', $args );
 					do_action( 'um_profile_header', $args );
 				}
-				do_action( 'um_before_profile_fields', $args );
-				do_action( 'um_main_profile_fields', $args );
-				do_action( 'um_after_form_fields', $args );
+				if ( ! $tab->_um_form_header || $tab->_um_form_fields ) {
+					// if "Display the profile header" is turned OFF or "Display the profile fields" is turned ON.
 
+					do_action( 'um_before_profile_fields', $args );
+					do_action( 'um_main_profile_fields', $args );
+					do_action( 'um_after_form_fields', $args );
+				}
 				?>
 				<input type="hidden" name="is_signup" value="1">
 				<input type="hidden" name="profile_nonce" value="<?php echo esc_attr( wp_create_nonce( 'um-profile-nonce' . $user_id ) ); ?>">
@@ -313,7 +322,7 @@ class Account {
 		if ( um_is_core_page( 'account' ) ) {
 			wp_enqueue_script(
 				'um-account-tabs',
-				um_account_tabs_url . '/assets/js/um-account-tabs.js',
+				um_account_tabs_url . 'assets/js/um-account-tabs.js',
 				array( 'jquery' ),
 				um_account_tabs_version,
 				true

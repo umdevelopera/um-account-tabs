@@ -11,7 +11,7 @@ Requires at least: 6.5
 Tested up to: 6.7.1
 Requires UM core at least: 2.6.8
 Tested UM core up to: 2.9.1
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 
 == Description ==
 
@@ -28,7 +28,7 @@ Adds custom tabs to the Account page menu.
 = Documentation & Support =
 
 This is a free extension created for the community. The Ultimate Member team does not provide support for this extension.
-Open new issue in the GitHub repository if you face a problem: https://github.com/umdevelopera/um-account-tabs/issues
+Open new issue in the GitHub repository if you are facing a problem or have a suggestion: https://github.com/umdevelopera/um-account-tabs/issues
 
 Documentation is the README section in the GitHub repository: https://github.com/umdevelopera/um-account-tabs
 
@@ -39,6 +39,13 @@ You can install this plugin from the ZIP file as any other plugin. Follow this i
 Download ZIP file from GitHub or Google Drive. You can find download links here: https://github.com/umdevelopera/um-account-tabs
 
 == Changelog ==
+
+= 1.1.4: December 19, 2024 =
+
+* Enhancements:
+
+	- Added: The "Display the profile fields" setting.
+	- Added: Placeholder {user_id} and placeholder {user_role}.
 
 = 1.1.3: December 1, 2024 =
 

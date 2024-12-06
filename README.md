@@ -23,7 +23,7 @@ Once the plugin is cloned, enter your site admin dashboard and go to _wp-admin >
 
 ### How to install from ZIP archive
 
-You can install this plugin from the [ZIP file](https://drive.google.com/file/d/1uoXMhNFw7ujxo6cC9dEUZ5G9iwp6kumj/view) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
+You can install this plugin from the [ZIP file](https://drive.google.com/file/d/1yeczJuNODBHQYiAZcHUkURzCv46NIcgN/view?usp=sharing) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
 
 ## How to use
 
@@ -42,6 +42,8 @@ Configure the account tab settings:
 3) Embed content:
 - **Embed a profile form** - Use this tool if you need to embed profile form fields into the tab.
 - **Display the profile header** - Use this tool if you need to embed cover and profile photo uploaders.
+- **Display the profile fields** - Use this to display profile form fields under the profile header.
+- **Submit button text** - Allows you to change the button text. "Update" by default.
 
 4) Restrictions:
 - **Show on these roles accounts** - Select user roles, in whose accounts you want to display the tab. The tab is displayed in all accounts if empty.
@@ -53,15 +55,19 @@ Configure the account tab settings:
 - **Tab position** - Set the position of the tab item in the menu. A number from 1 to 999. Default is `800`.
 - **Tab slug** - Set the slug of the tab. This is a part of the account page URL specific for the tab. Default post slug.
 
-### How to use placeholders and shortcodes
+### How to use placeholders, shortcodes and blocks
 
-The tab content supports placeholders: {display_name}, {first_name}, {last_name}, {username}, {gender}, {email}, {admin_email}, {site_name}, {site_url}, {user_account_link}, {user_profile_link}, {user_avatar}, {usermeta:meta_key}. Just add a placeholder into the text in the Content section.
+The tab content supports placeholders: {user_id}, {user_role}, {user_avatar}, {usermeta:_meta_key_}, {display_name}, {first_name}, {last_name}, {username}, {email}, {admin_email}, {site_name}, {site_url}, {user_account_link}, {user_profile_link}.
+Just add a placeholder into the text in the Content section.
+- **{user_id}** placeholder may be helpful for shortcodes that require the `user_id` attribute.
+- **{usermeta:_meta_key_}** placeholder may be helpful to display a custom field value.
 
-The Content section supports shortcodes and other Gutenberg blocks.
+The Content section supports shortcodes and Gutenberg blocks.
 
-**Example 1:** Placeholders and shortcode.
-![e1a+](https://github.com/user-attachments/assets/d87f4718-bc36-4b38-b6b6-9cca7d720901)
-![e1f](https://github.com/user-attachments/assets/623ab70d-273d-438b-9e9a-a7af7f6032de)
+**Example 1:** Placeholders and shortcodes.
+![114a1+](https://github.com/user-attachments/assets/375f2e92-a6d6-406a-bc54-914d38f2e3fe)
+___
+![114e1](https://github.com/user-attachments/assets/1b939909-9ac8-4a58-b83b-780d4b886d11)
 
 ### How to embed the profile form fields
 
@@ -70,15 +76,17 @@ Select the profile form you need in the **Embed a profile form** dropdown to emb
 
 **Example 2:** Embeded profile form fields
 ![e2a+](https://github.com/user-attachments/assets/46b7b5eb-7d80-4188-b543-ab490cf1e080)
-![e2f](https://github.com/user-attachments/assets/70edcdc0-3f0c-4f0b-812f-3bfc001a4e50)
+___
+![114e2](https://github.com/user-attachments/assets/efc4f3b6-c41d-4c5e-be2e-9768354d5bc4)
 
 ### How to embed cover and profile photo uploaders
 
 Select the profile form you need in the **Embed a profile form** dropdown and turn on the **Display the profile header** setting.
 
 **Example 3:** Embeded cover and profile photo uploaders.
-![e3a+](https://github.com/user-attachments/assets/4bea61f6-1d26-4be1-bcd3-cb933a53329e)
-![e3f](https://github.com/user-attachments/assets/4f04692b-2dae-448f-9999-52297df0c841)
+![114a3+](https://github.com/user-attachments/assets/eaecd354-edf4-457b-8964-9833b20030ad)
+___
+![114e3](https://github.com/user-attachments/assets/e9534c7d-1835-4251-80e6-92771d2eb871)
 
 ### How to translate
 
@@ -92,14 +100,14 @@ Install the [Ultimate Member - Polylang](https://github.com/umdevelopera/um-poly
 This is a free extension created for the community. The Ultimate Member team does not provide support for this extension.
 Open new [issue](https://github.com/umdevelopera/um-account-tabs/issues) if you are facing a problem or have a suggestion.
 
-### Related links
+**Please give a star if you think this extension is useful. I wish to know how many people use it. Thanks.**
 
-Ultimate Member home page: https://ultimatemember.com
+## Useful links
 
-Ultimate Member documentation: https://docs.ultimatemember.com
+[Ultimate Member documentation](https://docs.ultimatemember.com)
 
-Ultimate Member download: https://wordpress.org/plugins/ultimate-member
-
----
+[Ultimate Member core plugin info and download](https://wordpress.org/plugins/ultimate-member)
 
 [Free extensions for Ultimate Member](https://docs.google.com/document/d/1wp5oLOyuh5OUtI9ogcPy8NL428rZ8PVTu_0R-BuKKp8/edit?usp=sharing)
+
+[Code snippets for Ultimate Member](https://docs.google.com/document/d/1_bikh4JYlSjjQa0bX1HDGznpLtI0ur_Ma3XQfld2CKk/edit?usp=sharing)

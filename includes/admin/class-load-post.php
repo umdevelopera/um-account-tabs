@@ -103,45 +103,53 @@ if ( ! class_exists( 'um_ext\um_account_tabs\admin\Load_Post' ) ) {
 		/**
 		 * Get the post settings map.
 		 *
+		 * @since version 1.1.4
+		 *
 		 * @return array
 		 */
-		public function get_settings_map(){
+		public function get_settings_map() {
+
 			return array(
 				'_um_form'                 => array(
-					'sanitize' => 'absint',
 					'default'  => '',
+					'sanitize' => 'absint',
 				),
 				'_um_form_header'          => array(
-					'sanitize' => 'absint',
 					'default'  => 0,
+					'sanitize' => 'absint',
+				),
+				'_um_form_fields'          => array(
+					'default'  => 0,
+					'sanitize' => 'absint',
 				),
 				'_um_form_button'          => array(
-					'sanitize' => 'sanitize_text_field',
 					'default'  => __( 'Update', 'um-account-tabs' ),
+					'sanitize' => 'sanitize_text_field',
 				),
 				'_can_have_this_tab_roles' => array(
-					'sanitize' => 'wp_unslash',
 					'default'  => '',
+					'sanitize' => 'sanitize_title',
+					'type'     => 'array',
 				),
 				'_color'                   => array(
-					'sanitize' => 'sanitize_hex_color',
 					'default'  => '',
+					'sanitize' => 'sanitize_hex_color',
 				),
 				'_color_text'              => array(
-					'sanitize' => 'sanitize_hex_color',
 					'default'  => '',
+					'sanitize' => 'sanitize_hex_color',
 				),
 				'_icon'                    => array(
-					'sanitize' => 'sanitize_text_field',
 					'default'  => '',
+					'sanitize' => 'sanitize_text_field',
 				),
 				'_position'                => array(
-					'sanitize' => 'absint',
 					'default'  => 800,
+					'sanitize' => 'absint',
 				),
 				'_tab_slug'                => array(
-					'sanitize' => 'sanitize_title',
 					'default'  => '',
+					'sanitize' => 'sanitize_title',
 				),
 			);
 		}
@@ -149,6 +157,9 @@ if ( ! class_exists( 'um_ext\um_account_tabs\admin\Load_Post' ) ) {
 
 		/**
 		 * Save settings in metaboxes.
+		 *
+		 * @since   1.0.0
+		 * @version 1.1.4 Use settings map.
 		 *
 		 * @param int      $post_id Post ID.
 		 * @param \WP_Post $post    Post object.
@@ -168,32 +179,21 @@ if ( ! class_exists( 'um_ext\um_account_tabs\admin\Load_Post' ) ) {
 
 			$input = map_deep( wp_unslash( $_POST['um_account_tab'] ), 'sanitize_text_field' );
 
-			$form = isset( $input['_um_form'] ) ? absint( $input['_um_form'] ) : '';
-			update_post_meta( $post_id, '_um_form', $form );
-
-			$form_header = isset( $input['_um_form_header'] ) ? absint( $input['_um_form_header'] ) : 0;
-			update_post_meta( $post_id, '_um_form_header', $form_header );
-
-			$button = isset( $input['_um_form_button'] ) ? sanitize_text_field( $input['_um_form_button'] ) : __( 'Update', 'um-account-tabs' );
-			update_post_meta( $post_id, '_um_form_button', $button );
-
-			$roles = isset( $input['_can_have_this_tab_roles'] ) && is_array( $input['_can_have_this_tab_roles'] ) ? $input['_can_have_this_tab_roles'] : '';
-			update_post_meta( $post_id, '_can_have_this_tab_roles', $roles );
-
-			$color = isset( $input['_color'] ) ? sanitize_hex_color( $input['_color'] ) : '';
-			update_post_meta( $post_id, '_color', $color );
-
-			$color_text = isset( $input['_color_text'] ) ? sanitize_hex_color( $input['_color_text'] ) : '';
-			update_post_meta( $post_id, '_color_text', $color_text );
-
-			$icon = isset( $input['_icon'] ) ? sanitize_text_field( $input['_icon'] ) : '';
-			update_post_meta( $post_id, '_icon', $icon );
-
-			$position = isset( $input['_position'] ) ? absint( $input['_position'] ) : '';
-			update_post_meta( $post_id, '_position', $position );
-
-			$tab_slug = isset( $input['_tab_slug'] ) ? sanitize_title( $input['_tab_slug'] ) : '';
-			update_post_meta( $post_id, '_tab_slug', $tab_slug );
+			foreach ( $this->get_settings_map() as $key => $set ) {
+				$value = null;
+				if ( ! array_key_exists( $key, $input ) && array_key_exists( 'default', $set ) ) {
+					$value = $set['default'];
+				} else {
+					if ( array_key_exists( 'type', $set ) && 'array' === $set['type'] ) {
+						$value = map_deep( $input[ $key ], $set['sanitize'] );
+					} else {
+						$value = call_user_func( $set['sanitize'], $input[ $key ] );
+					}
+				}
+				if ( isset( $value ) ) {
+					update_post_meta( $post_id, $key, $value );
+				}
+			}
 		}
 	}
 }
