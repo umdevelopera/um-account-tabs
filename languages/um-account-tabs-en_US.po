@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Ultimate Member - Account tabs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-11 20:06+0000\n"
-"PO-Revision-Date: 2024-12-01 21:13+0000\n"
+"PO-Revision-Date: 2024-12-19 18:13+0000\n"
 "Last-Translator: umdevelopera\n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -64,6 +64,14 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
+#: includes/admin/templates/account-tab/embed.php:65
+msgid "Display profile form fields under the profile header."
+msgstr ""
+
+#: includes/admin/templates/account-tab/embed.php:64
+msgid "Display the profile fields"
+msgstr ""
+
 #: includes/admin/templates/account-tab/embed.php:56
 msgid "Display the profile header"
 msgstr ""
@@ -84,7 +92,7 @@ msgstr ""
 msgid "Embed form"
 msgstr ""
 
-#: includes/admin/templates/account-tab/embed.php:95
+#: includes/admin/templates/account-tab/embed.php:104
 msgid "here"
 msgstr ""
 
@@ -98,6 +106,10 @@ msgstr ""
 
 #: includes/admin/templates/account-tab/appearance.php:32
 msgid "Icon"
+msgstr ""
+
+#: includes/admin/templates/account-tab/embed.php:93
+msgid "Insert the field's Meta Key here."
 msgstr ""
 
 #: includes/core/class-common.php:41
@@ -141,7 +153,7 @@ msgstr ""
 msgid "Show on these roles accounts"
 msgstr ""
 
-#: includes/admin/templates/account-tab/embed.php:64
+#: includes/admin/templates/account-tab/embed.php:72
 msgid "Submit button text"
 msgstr ""
 
@@ -166,7 +178,7 @@ msgid ""
 "org/plugins/ultimate-member\">here</a>"
 msgstr ""
 
-#: includes/admin/templates/account-tab/embed.php:81
+#: includes/admin/templates/account-tab/embed.php:89
 msgid "The tab content supports placeholders:"
 msgstr ""
 
@@ -190,9 +202,8 @@ msgstr ""
 msgid "umdevelopera"
 msgstr ""
 
-#: includes/admin/class-load-post.php:120
-#: includes/admin/class-load-post.php:177 includes/core/class-account.php:148
-#: includes/admin/templates/account-tab/embed.php:65
+#: includes/admin/class-load-post.php:126 includes/core/class-account.php:152
+#: includes/admin/templates/account-tab/embed.php:73
 msgid "Update"
 msgstr ""
 
@@ -214,6 +225,10 @@ msgid ""
 "tab is displayed in all accounts if the setting is empty."
 msgstr ""
 
-#: includes/admin/templates/account-tab/embed.php:95
+#: includes/admin/templates/account-tab/embed.php:90
+msgid "You can use this placeholder in the shortcode attribute."
+msgstr ""
+
+#: includes/admin/templates/account-tab/embed.php:104
 msgid "You may get more details about placeholders"
 msgstr ""
