@@ -322,7 +322,7 @@ class Account {
 		if ( um_is_core_page( 'account' ) ) {
 			wp_enqueue_script(
 				'um-account-tabs',
-				um_account_tabs_url . '/assets/js/um-account-tabs.js',
+				um_account_tabs_url . 'assets/js/um-account-tabs.js',
 				array( 'jquery' ),
 				um_account_tabs_version,
 				true
