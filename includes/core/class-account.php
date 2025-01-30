@@ -1,18 +1,10 @@
 <?php
-/**
- * Modifies the Account page.
- *
- * @package um_ext\um_account_tabs\core
- */
-
 namespace um_ext\um_account_tabs\core;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
- * Class Account.
+ * Modifies the Account page.
  *
  * @package um_ext\um_account_tabs\core
  */
@@ -116,7 +108,7 @@ class Account {
 			 * Type: filter
 			 * Description: Filter custom account tabs. May be used to localize them.
 			 *
-			 * @since   1.0.7
+			 * @since 1.0.7
 			 *
 			 * @param array $tabs All custom account tabs like posts array.
 			 */
@@ -228,9 +220,29 @@ class Account {
 				\Elementor\Plugin::instance()->frontend->add_content_filter();
 			}
 
+			/**
+			 * Hook: um_account_tabs_sanitize_tab
+			 * Type: filter
+			 * Description: Turn on/off the custom tab content sanitize.
+			 *
+			 * @since 1.1.5
+			 *
+			 * @param bool   $sanitize_tab Set `true` to sanitize the tab content.
+			 * @param string $tab_id       Tab slug.
+			 */
+			$sanitize_tab = apply_filters( 'um_account_tabs_sanitize_tab', true, $tab_id );
+			if ( $sanitize_tab ) {
+				$output = wp_kses( $output, 'post' );
+			}
+
 			if ( ! empty( $tab->_um_form ) ) {
 				$output .= $this->display_embeded_form( $tab_id, $tab->_um_form );
 			}
+		}
+
+		// Restore global user if it was changed.
+		if ( um_user( 'ID' ) !== get_current_user_id() ) {
+			um_fetch_user( get_current_user_id() );
 		}
 
 		return $output;
@@ -276,7 +288,7 @@ class Account {
 		ob_start();
 		?>
 		<div class="um <?php echo esc_attr( $classes ); ?> um-<?php echo absint( $form_id ); ?> um-role-<?php echo esc_attr( um_user( 'role' ) ); ?> ">
-			<div class="um-form" data-mode="profile">
+			<div class="um-form" data-mode="profile" data-form_id="<?php echo absint( $form_id ); ?>">
 				<?php
 				if ( $tab->_um_form_header && false === $this->is_profile_header_shown ) {
 					// if "Display the profile header" is turned ON.

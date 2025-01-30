@@ -10,8 +10,8 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 Requires at least: 6.5
 Tested up to: 6.7.1
 Requires UM core at least: 2.6.8
-Tested UM core up to: 2.9.1
-Stable tag: 1.1.4
+Tested UM core up to: 2.9.2
+Stable tag: 1.1.5
 
 == Description ==
 
@@ -39,6 +39,13 @@ You can install this plugin from the ZIP file as any other plugin. Follow this i
 Download ZIP file from GitHub or Google Drive. You can find download links here: https://github.com/umdevelopera/um-account-tabs
 
 == Changelog ==
+
+= 1.1.5: February 2, 2025 =
+
+* Enhancements:
+
+	- Tweak: Restore global user if it was changed in the tab content.
+	- Tweak: Sanitization of the custom tab content is enabled by default. Use the filter hook `um_account_tabs_sanitize_tab` if you need to display unsafe content.
 
 = 1.1.4: December 19, 2024 =
 

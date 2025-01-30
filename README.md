@@ -23,7 +23,7 @@ Once the plugin is cloned, enter your site admin dashboard and go to _wp-admin >
 
 ### How to install from ZIP archive
 
-You can install this plugin from the [ZIP file](https://drive.google.com/file/d/1yeczJuNODBHQYiAZcHUkURzCv46NIcgN/view?usp=sharing) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
+You can install this plugin from this [ZIP file](https://drive.google.com/file/d/1v6XpMQ6phoygx4U_jaF2REfz8z1Dn_sv/view?usp=sharing) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
 
 ## How to use
 
@@ -100,13 +100,15 @@ Install the [Ultimate Member - Polylang](https://github.com/umdevelopera/um-poly
 This is a free extension created for the community. The Ultimate Member team does not provide support for this extension.
 Open new [issue](https://github.com/umdevelopera/um-account-tabs/issues) if you are facing a problem or have a suggestion.
 
-**Please give a star if you think this extension is useful. I wish to know how many people use it. Thanks.**
+**Give a star if you think this extension is useful. Thanks.**
 
 ## Useful links
 
-[Ultimate Member documentation](https://docs.ultimatemember.com)
-
 [Ultimate Member core plugin info and download](https://wordpress.org/plugins/ultimate-member)
+
+[Documentation for Ultimate Member](https://docs.ultimatemember.com)
+
+[Official extensions for Ultimate Member](https://ultimatemember.com/extensions/)
 
 [Free extensions for Ultimate Member](https://docs.google.com/document/d/1wp5oLOyuh5OUtI9ogcPy8NL428rZ8PVTu_0R-BuKKp8/edit?usp=sharing)
 
