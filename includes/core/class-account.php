@@ -1,12 +1,18 @@
 <?php
+/**
+ * Modifies the Account page.
+ *
+ * @package um_ext\um_account_tabs\core
+ */
+
 namespace um_ext\um_account_tabs\core;
 
-
-if ( ! defined( 'ABSPATH' ) ) exit;
-
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
- * Class Account
+ * Class Account.
  *
  * @package um_ext\um_account_tabs\core
  */
@@ -14,12 +20,11 @@ class Account {
 
 
 	/**
+	 * Custom tabs.
+	 *
 	 * @var array
 	 */
 	protected $tabs = null;
-
-
-	private $inited = false;
 
 
 	/**
@@ -34,7 +39,7 @@ class Account {
 	 *
 	 * @return array Posts.
 	 */
-	public function get_tabs(){
+	public function get_tabs() {
 		if ( ! is_array( $this->tabs ) ) {
 			$this->tabs = get_posts(
 				array(
@@ -73,34 +78,37 @@ class Account {
 			);
 
 			// Show tab content.
-			add_action( 'um_account_content_hook_' . $tab->post_name, function( $args ) use ( $tab ) {
-				$output = '';
+			add_action(
+				'um_account_content_hook_' . $tab->post_name,
+				function( $args ) use ( $tab ) {
+					$output = '';
 
-				$userdata     = get_userdata( get_current_user_id() );
-				$placeholders = array(
-					'{user_id}'                => get_current_user_id(),
-					'{first_name}'             => $userdata->first_name,
-					'{last_name}'              => $userdata->last_name,
-					'{user_email}'             => $userdata->user_email,
-					'{display_name}'           => $userdata->display_name,
-					'[ultimatemember form_id=' => '[',
-				);
+					$userdata     = get_userdata( get_current_user_id() );
+					$placeholders = array(
+						'{user_id}'                => get_current_user_id(),
+						'{first_name}'             => $userdata->first_name,
+						'{last_name}'              => $userdata->last_name,
+						'{user_email}'             => $userdata->user_email,
+						'{display_name}'           => $userdata->display_name,
+						'[ultimatemember form_id=' => '[',
+					);
 
-				$tab_content = str_replace( array_keys( $placeholders ), array_values( $placeholders ), $tab->post_content );
+					$tab_content = str_replace( array_keys( $placeholders ), array_values( $placeholders ), $tab->post_content );
 
-				// Fix conflict that may appear if the tab contains Elementor template
-				if ( class_exists( '\Elementor\Plugin' ) ) {
-					\Elementor\Plugin::instance()->frontend->remove_content_filter();
-					$output .= apply_filters( 'the_content', $tab_content );
-					\Elementor\Plugin::instance()->frontend->add_content_filter();
-				} else {
-					$output .= apply_filters( 'the_content', $tab_content );
+					// Fix conflict that may appear if the tab contains Elementor template.
+					if ( class_exists( '\Elementor\Plugin' ) ) {
+						\Elementor\Plugin::instance()->frontend->remove_content_filter();
+						$output .= apply_filters( 'the_content', $tab_content );
+						\Elementor\Plugin::instance()->frontend->add_content_filter();
+					} else {
+						$output .= apply_filters( 'the_content', $tab_content );
+					}
+
+					$output .= $this->um_custom_tab_form( $tab->ID, $tab->_um_form );
+
+					return $output;
 				}
-
-				$output .= $this->um_custom_tab_form( $tab->ID, $tab->_um_form );
-
-				return $output;
-			} );
+			);
 
 		}
 		return $tabs;
@@ -135,10 +143,10 @@ class Account {
 
 
 	/**
-	 * Generate content for custom tabs
+	 * Generate content for custom tabs.
 	 *
-	 * @param  string $tab_id
-	 * @param  int    $form_id
+	 * @param string $tab_id  Tab ID.
+	 * @param int    $form_id Form ID.
 	 *
 	 * @return string
 	 */
@@ -165,21 +173,19 @@ class Account {
 		);
 
 		ob_start();
-		//do_action( 'um_before_form', $args );
 		do_action( 'um_before_profile_fields', $args );
 		do_action( 'um_main_profile_fields', $args );
 		do_action( 'um_after_form_fields', $args );
-		//do_action( 'um_after_profile_fields', $args );
+
 		?>
 		<input type="hidden" name="is_signup" value="1">
-		<input type="hidden" name="profile_nonce" value="<?php echo wp_create_nonce( 'um-profile-nonce' . $user_id ); ?>">
+		<input type="hidden" name="profile_nonce" value="<?php echo esc_attr( wp_create_nonce( 'um-profile-nonce' . $user_id ) ); ?>">
 		<input type="hidden" name="user_id" value="<?php echo esc_attr( $user_id ); ?>">
 		<?php
 
-
 		$contents = ob_get_clean();
 
-		// restore default account settings
+		// restore default account settings.
 		UM()->fields()->set_id   = $set_id;
 		UM()->fields()->set_mode = $set_mode;
 		UM()->fields()->editing  = $editing;

@@ -1,9 +1,15 @@
 <?php
+/**
+ * Sets default settings on installation.
+ *
+ * @package um_ext\um_account_tabs\core
+ */
+
 namespace um_ext\um_account_tabs\core;
 
-
-if ( ! defined( 'ABSPATH' ) ) exit;
-
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Class Setup
@@ -18,22 +24,21 @@ class Setup {
 	 *
 	 * @var array
 	 */
-	var $settings_defaults;
+	public $settings_defaults;
 
 
 	/**
 	 * Setup constructor.
 	 */
-	function __construct() {
-		$this->settings_defaults = array(
-		);
+	public function __construct() {
+		$this->settings_defaults = array();
 	}
 
 
 	/**
 	 * Set Settings.
 	 */
-	function set_default_settings() {
+	public function set_default_settings() {
 		$options = get_option( 'um_options', array() );
 
 		foreach ( $this->settings_defaults as $key => $value ) {
@@ -49,7 +54,7 @@ class Setup {
 	/**
 	 * Run on plugin activation.
 	 */
-	function run_setup() {
+	public function run_setup() {
 		$this->set_default_settings();
 	}
 }
