@@ -3,12 +3,12 @@
 	Plugin Name: Ultimate Member - Account tabs
 	Plugin URI:  https://github.com/umdevelopera/um-account-tabs
 	Description: Adds custom tabs to the user account.
-	Version:     1.0.2
+	Version:     1.0.3
 	Author:      umdevelopera
 	Author URI:  https://github.com/umdevelopera
 	Text Domain: um-account-tabs
 	Domain Path: /languages
-	UM version:  2.5.0
+	UM version:  2.6.8
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -61,11 +61,11 @@ if ( ! function_exists( 'um_account_tabs_check_dependencies' ) ) {
 					UM()->set_class( 'Account_Tabs', true );
 				}
 			}
-			add_action( 'plugins_loaded', 'um_account_tabs_init', -10, 1 );
+			add_action( 'plugins_loaded', 'um_account_tabs_init', 4, 1 );
 		}
 	}
 }
-add_action( 'plugins_loaded', 'um_account_tabs_check_dependencies', -20 );
+add_action( 'plugins_loaded', 'um_account_tabs_check_dependencies', 2 );
 
 // Loads a plugin's translated strings.
 if ( ! function_exists( 'um_account_tabs_plugins_loaded' ) ) {
@@ -75,4 +75,4 @@ if ( ! function_exists( 'um_account_tabs_plugins_loaded' ) ) {
 		load_plugin_textdomain( um_account_tabs_textdomain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
 }
-add_action( 'plugins_loaded', 'um_account_tabs_plugins_loaded', 0 );
+add_action( 'plugins_loaded', 'um_account_tabs_plugins_loaded', 6 );

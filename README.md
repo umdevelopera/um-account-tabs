@@ -20,7 +20,7 @@ Open git bash, navigate to the **plugins** folder and execute this command:
 Once the plugin is cloned, enter your site admin dashboard and go to _wp-admin > Plugins > Installed Plugins_. Find the "Ultimate Member - Account tabs" plugin and click the "Activate" link.
 
 ### Install from ZIP archive
-You can install this plugin from the [ZIP archive](https://drive.google.com/file/d/1Zs1j9jLYI4VReUnnDwNRzhilcqYTZCUP/view) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
+You can install this plugin from the [ZIP archive](https://drive.google.com/file/d/1iZ85_fNKUiee_2BdVFdWMpxD3KimZ9Sj/view) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
 
 ## How to use
 Once the plugin is activated go to *wp-admin > Ultimate Member > Account Tabs*.
@@ -45,7 +45,4 @@ Ultimate Member documentation: https://docs.ultimatemember.com/
 
 Ultimate Member on wordpress.org: https://wordpress.org/plugins/ultimate-member
 
-Articles:
-- [Account Tab](https://docs.ultimatemember.com/article/40-account-tab)
-- [Extend Ultimate Member Account page with custom tabs/content](https://docs.ultimatemember.com/article/65-extend-ultimate-member-account-page-with-custom-tabs-content)
-- [Extend the Account page with Ultimate Member pre-defined fields](https://docs.ultimatemember.com/article/1770-extend-the-account-page-with-ultimate-member-pre-defined-fields)
+Articles: [Account Tab](https://docs.ultimatemember.com/article/40-account-tab), [Extend Ultimate Member Account page with custom tabs/content](https://docs.ultimatemember.com/article/65-extend-ultimate-member-account-page-with-custom-tabs-content)

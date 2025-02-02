@@ -55,6 +55,7 @@ class UM_Account_Tabs {
 	 */
 	public function account() {
 		if ( empty( UM()->classes['um_account_tabs_account'] ) ) {
+			require_once um_account_tabs_path . 'includes/core/class-account.php';
 			UM()->classes['um_account_tabs_account'] = new um_ext\um_account_tabs\core\Account();
 		}
 		return UM()->classes['um_account_tabs_account'];
@@ -66,6 +67,7 @@ class UM_Account_Tabs {
 	 */
 	public function admin() {
 		if ( empty( UM()->classes['um_account_tabs_admin'] ) ) {
+			require_once um_account_tabs_path . 'includes/admin/class-admin.php';
 			UM()->classes['um_account_tabs_admin'] = new um_ext\um_account_tabs\admin\Admin();
 		}
 		return UM()->classes['um_account_tabs_admin'];
@@ -77,6 +79,7 @@ class UM_Account_Tabs {
 	 */
 	public function common() {
 		if ( empty( UM()->classes['um_account_tabs_common'] ) ) {
+			require_once um_account_tabs_path . 'includes/core/class-common.php';
 			UM()->classes['um_account_tabs_common'] = new um_ext\um_account_tabs\core\Common();
 		}
 		return UM()->classes['um_account_tabs_common'];
