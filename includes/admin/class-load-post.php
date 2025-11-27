@@ -18,6 +18,7 @@ class Load_Post {
 		global $current_screen;
 		if ( isset( $current_screen ) && 'um_account_tabs' === $current_screen->id ) {
 			add_action( 'add_meta_boxes', array( &$this, 'add_metaboxes' ), 1 );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ), 10 );
 			add_action( 'save_post_um_account_tabs', array( &$this, 'save_metaboxes_data' ), 10, 3 );
 		}
 		add_filter( 'wp_insert_post_data', array( &$this, 'filter_post_data' ), 10, 4 );
@@ -63,6 +64,20 @@ class Load_Post {
 			'side',
 			'default'
 		);
+	}
+
+
+	/**
+	 * Enqueue scripts and styles.
+	 */
+	public function enqueue() {
+		wp_register_style(
+			'um-account-tabs',
+			plugins_url( 'um-account-tabs/assets/css/um-account-tabs.css' ),
+			array(),
+			um_account_tabs_version,
+		);
+		wp_enqueue_style( 'um-account-tabs' );
 	}
 
 

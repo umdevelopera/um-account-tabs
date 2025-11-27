@@ -8,10 +8,10 @@ License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
 Requires at least: 6.5
-Tested up to: 6.7.1
+Tested up to: 7.0.2
 Requires UM core at least: 2.6.8
-Tested UM core up to: 2.9.2
-Stable tag: 1.1.5
+Tested UM core up to: 2.12.1
+Stable tag: 1.1.6
 
 == Description ==
 
@@ -39,6 +39,17 @@ You can install this plugin from the ZIP file as any other plugin. Follow this i
 Download ZIP file from GitHub or Google Drive. You can find download links here: https://github.com/umdevelopera/um-account-tabs
 
 == Changelog ==
+
+= 1.1.6: July 22, 2026 =
+
+* Enhancements:
+
+  - Applied `um_pre_args_setup` and `um_shortcode_args_filter` filters to the arguments of the embedded profile form.
+  - Updated the README file. Added information about the `um_account_tabs_sanitize_tab` hook.
+
+* Bugfixes:
+
+  - Fixed `select2` styles for the "Icon" setting.
 
 = 1.1.5: February 2, 2025 =
 

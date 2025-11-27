@@ -1,0 +1,5 @@
+/* fix select2 styles */
+.um-account-tab-appearance .select2-container--default .select2-selection--single .select2-selection__rendered {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}

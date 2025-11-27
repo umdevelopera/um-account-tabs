@@ -11,8 +11,8 @@
  * Requires Plugins: ultimate-member
  * Requires at least: 6.5
  * Requires PHP: 7.4
- * UM version: 2.9.2
- * Version: 1.1.5
+ * UM version: 2.12.1
+ * Version: 1.1.6
  *
  * @package um_ext\um_account_tabs
  */

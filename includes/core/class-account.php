@@ -264,8 +264,19 @@ class Account {
 		$this->is_profile_form_shown = true;
 
 		$tab     = $this->tabs[ $tab_id ];
-		$args    = UM()->query()->post_data( $form_id );
 		$user_id = get_current_user_id();
+
+		$args = UM()->query()->post_data( $form_id );
+		if ( empty( $args['mode'] ) || 'profile' !== $args['mode'] ) {
+			return '';
+		} elseif ( is_array( $args )) {
+			/**
+			 * These hooks are documented in the file class-shortcodes.php
+			 * @see um\core\Shortcodes::load()
+			 */
+			$argsf = apply_filters( 'um_pre_args_setup', $args );
+			$args  = apply_filters( 'um_shortcode_args_filter', $argsf );
+		}
 
 		// save account settings.
 		global $post;

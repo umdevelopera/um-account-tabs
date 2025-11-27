@@ -23,7 +23,7 @@ Once the plugin is cloned, enter your site admin dashboard and go to _wp-admin >
 
 ### How to install from ZIP archive
 
-You can install this plugin from this [ZIP file](https://drive.google.com/file/d/1v6XpMQ6phoygx4U_jaF2REfz8z1Dn_sv/view?usp=sharing) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
+You can install this plugin from this [ZIP file](https://drive.google.com/file/d/1CjA3aYHsLXkx8I_H1GfoDU3n7pSNf-Nu/view?usp=sharing) as any other plugin. Follow [this instruction](https://wordpress.org/support/article/managing-plugins/#upload-via-wordpress-admin).
 
 ## How to use
 
@@ -94,6 +94,13 @@ It is possible to translate custom account tabs if you use the [Polylang](https:
 Install the [Ultimate Member - Polylang](https://github.com/umdevelopera/um-polylang) extension. Go to *wp-admin > Ultimate Member > Account Tabs* and click the **Create Tabs** button in the notice to duplicate tabs for all languages. Once the tabs are duplicated, you can manually edit the tab titles.
 
 ![WP, Ultimate Member, Account Tabs (Create Tabs)](https://github.com/user-attachments/assets/ed82a077-7727-424e-848e-ab9593013a6d)
+
+### Hooks
+
+The plugin uses the `wp_kses` function to sanitize the tab content. This function strips out disallowed HTML, including `<iframe>` and `<script>`. You can use the `um_account_tabs_sanitize_tab` hook to disable the tab content sanitizing:
+```
+add_filter( 'um_account_tabs_sanitize_tab', '__return_false' );
+```
 
 ## Support
 
