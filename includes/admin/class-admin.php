@@ -66,7 +66,7 @@ class Admin {
 	 */
 	public function load_edit() {
 		if ( empty( UM()->classes['um_account_load_edit'] ) ) {
-			require_once um_account_tabs_path . 'includes/admin/class-load-edit.php';
+			require_once UM_ACCOUNT_TABS_PATH . 'includes/admin/class-load-edit.php';
 			UM()->classes['um_account_load_edit'] = new Load_Edit();
 		}
 		return UM()->classes['um_account_load_edit'];
@@ -80,7 +80,7 @@ class Admin {
 	 */
 	public function load_post() {
 		if ( empty( UM()->classes['um_account_load_post'] ) ) {
-			require_once um_account_tabs_path . 'includes/admin/class-load-post.php';
+			require_once UM_ACCOUNT_TABS_PATH . 'includes/admin/class-load-post.php';
 			UM()->classes['um_account_load_post'] = new Load_Post();
 		}
 		return UM()->classes['um_account_load_post'];

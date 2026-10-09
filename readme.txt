@@ -4,14 +4,14 @@ Author: umdevelopera
 Author URI: https://github.com/umdevelopera
 Plugin URI: https://github.com/umdevelopera/um-account-tabs
 Tags: ultimate member, account, tabs
-License: GNU Version 2 or Any Later Version
+License: GNU Version 3 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
-Requires at least: 6.5
-Tested up to: 7.0.2
-Requires UM core at least: 2.6.8
-Tested UM core up to: 2.12.1
-Stable tag: 1.1.6
+Requires WP at least: 6.5
+Tested WP up to: 7.1.3
+Requires UM core at least: 2.14.0
+Tested UM core up to: 2.14.0
+Stable tag: 1.1.7
 
 == Description ==
 
@@ -39,6 +39,12 @@ You can install this plugin from the ZIP file as any other plugin. Follow this i
 Download ZIP file from GitHub or Google Drive. You can find download links here: https://github.com/umdevelopera/um-account-tabs
 
 == Changelog ==
+
+= 1.1.7: October 9, 2026 =
+
+* Enhancements:
+
+	- Updated embedded profile form for compatibility with the Ultimate Member core version 2.14.0.
 
 = 1.1.6: July 22, 2026 =
 

@@ -39,7 +39,7 @@ class Load_Post {
 		}
 
 		add_meta_box(
-			'um-admin-custom-account-tab/embed{' . um_account_tabs_path . '}',
+			'um-admin-custom-account-tab/embed{' . UM_ACCOUNT_TABS_PATH . '}',
 			__( 'Embed content', 'um-account-tabs' ),
 			array( UM()->metabox(), 'load_metabox_custom' ),
 			'um_account_tabs',
@@ -48,7 +48,7 @@ class Load_Post {
 		);
 
 		add_meta_box(
-			'um-admin-custom-account-tab/access{' . um_account_tabs_path . '}',
+			'um-admin-custom-account-tab/access{' . UM_ACCOUNT_TABS_PATH . '}',
 			__( 'Restrictions', 'um-account-tabs' ),
 			array( UM()->metabox(), 'load_metabox_custom' ),
 			'um_account_tabs',
@@ -57,7 +57,7 @@ class Load_Post {
 		);
 
 		add_meta_box(
-			'um-admin-custom-account-tab/appearance{' . um_account_tabs_path . '}',
+			'um-admin-custom-account-tab/appearance{' . UM_ACCOUNT_TABS_PATH . '}',
 			__( 'Appearance', 'um-account-tabs' ),
 			array( UM()->metabox(), 'load_metabox_custom' ),
 			'um_account_tabs',
@@ -75,7 +75,7 @@ class Load_Post {
 			'um-account-tabs',
 			plugins_url( 'um-account-tabs/assets/css/um-account-tabs.css' ),
 			array(),
-			um_account_tabs_version,
+			UM_ACCOUNT_TABS_VERSION,
 		);
 		wp_enqueue_style( 'um-account-tabs' );
 	}

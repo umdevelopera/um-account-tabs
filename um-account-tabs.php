@@ -11,8 +11,8 @@
  * Requires Plugins: ultimate-member
  * Requires at least: 6.5
  * Requires PHP: 7.4
- * UM version: 2.12.1
- * Version: 1.1.6
+ * UM version: 2.14.0
+ * Version: 1.1.7
  *
  * @package um_ext\um_account_tabs
  */
@@ -25,13 +25,11 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 $plugin_data = get_plugin_data( __FILE__, true, false );
 
-define( 'um_account_tabs_url', plugin_dir_url( __FILE__ ) );
-define( 'um_account_tabs_path', plugin_dir_path( __FILE__ ) );
-define( 'um_account_tabs_plugin', plugin_basename( __FILE__ ) );
-define( 'um_account_tabs_extension', $plugin_data['Name'] );
-define( 'um_account_tabs_version', $plugin_data['Version'] );
-define( 'um_account_tabs_textdomain', 'um-account-tabs' );
-
+define( 'UM_ACCOUNT_TABS_URL', plugin_dir_url( __FILE__ ) );
+define( 'UM_ACCOUNT_TABS_PATH', plugin_dir_path( __FILE__ ) );
+define( 'UM_ACCOUNT_TABS_PLUGIN', plugin_basename( __FILE__ ) );
+define( 'UM_ACCOUNT_TABS_EXTENSION', $plugin_data['Name'] );
+define( 'UM_ACCOUNT_TABS_VERSION', $plugin_data['Version'] );
 
 // Check dependencies.
 if ( ! function_exists( 'um_account_tabs_check_dependencies' ) ) {
@@ -42,7 +40,14 @@ if ( ! function_exists( 'um_account_tabs_check_dependencies' ) ) {
 				'admin_notices',
 				function () {
 					// translators: %s - plugin name.
-					echo '<div class="error"><p>' . wp_kses_post( sprintf( __( 'The <strong>%s</strong> extension requires the Ultimate Member plugin to be activated to work properly. You can download it <a href="https://wordpress.org/plugins/ultimate-member">here</a>', 'um-account-tabs' ), um_account_tabs_extension ) ) . '</p></div>';
+					echo '<div class="error"><p>';
+					echo wp_kses_post(
+						sprintf(
+							__( 'The <strong>%s</strong> extension requires the Ultimate Member plugin to be activated to work properly. You can download it <a href="https://wordpress.org/plugins/ultimate-member">here</a>', 'um-account-tabs' ),
+							UM_ACCOUNT_TABS_EXTENSION
+						)
+					);
+					echo '</p></div>';
 				}
 			);
 		} else {

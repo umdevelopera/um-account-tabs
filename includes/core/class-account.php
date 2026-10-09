@@ -265,6 +265,7 @@ class Account {
 
 		$tab     = $this->tabs[ $tab_id ];
 		$user_id = get_current_user_id();
+		um_set_requested_user( $user_id );
 
 		$args = UM()->query()->post_data( $form_id );
 		if ( empty( $args['mode'] ) || 'profile' !== $args['mode'] ) {
@@ -316,9 +317,6 @@ class Account {
 					do_action( 'um_after_form_fields', $args );
 				}
 				?>
-				<input type="hidden" name="is_signup" value="1">
-				<input type="hidden" name="profile_nonce" value="<?php echo esc_attr( wp_create_nonce( 'um-profile-nonce' . $user_id ) ); ?>">
-				<input type="hidden" name="user_id" value="<?php echo esc_attr( $user_id ); ?>">
 			</div>
 		</div>
 		<?php
@@ -345,9 +343,9 @@ class Account {
 		if ( um_is_core_page( 'account' ) ) {
 			wp_enqueue_script(
 				'um-account-tabs',
-				um_account_tabs_url . 'assets/js/um-account-tabs.js',
+				UM_ACCOUNT_TABS_URL . 'assets/js/um-account-tabs.js',
 				array( 'jquery' ),
-				um_account_tabs_version,
+				UM_ACCOUNT_TABS_VERSION,
 				true
 			);
 		}
